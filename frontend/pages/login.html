@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Masuk - SaaS Logistik</title>
+  <link rel="stylesheet" href="/frontend/css/styles.css">
+  <link rel="stylesheet" href="/frontend/css/auth.css">
+</head>
+<body class="auth-layout">
+  
+  <div class="auth-card">
+    <div class="auth-header">
+      <h2>Selamat Datang</h2>
+      <p>Masuk ke akun dasbor Anda</p>
+    </div>
+
+    <form id="loginForm" class="auth-form">
+      <div class="input-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" required placeholder="nama@perusahaan.com">
+      </div>
+      
+      <div class="input-group">
+        <label for="password">Kata Sandi</label>
+        <input type="password" id="password" required>
+      </div>
+
+      <!-- Sesuai PRD: Pilihan Role -->
+      <div class="input-group">
+        <label for="role">Masuk Sebagai</label>
+        <select id="role" required>
+          <option value="toko">Toko (Shipper)</option>
+          <option value="vendor">Vendor (Transporter)</option>
+        </select>
+      </div>
+
+      <!-- Tombol tebal Full-width -->
+      <button type="submit" class="btn-primary full-width">Masuk</button>
+    </form>
+  </div>
+
+  <script src="../js/auth.js"></script>
+</body>
+</html>

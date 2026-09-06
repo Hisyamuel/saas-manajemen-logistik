@@ -1,0 +1,24 @@
+:root {
+  /* Palet Warna Utama Diperbarui */
+  --bg-dark: #22252a;      /* Abu-abu gelap (bukan hitam pekat) */
+  --bg-surface: #2c3036;   /* Sedikit lebih terang untuk kartu/modal */
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+  
+  /* Warna Primer & Status */
+  --btn-primary: #e0e0e0;  
+  --btn-primary-hover: #ffffff;
+  
+  --status-pending: #eab308; 
+  --status-proses: #f97316;  
+  --status-jalan: #60a5fa;   
+  --status-selesai: #22c55e; 
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+}
