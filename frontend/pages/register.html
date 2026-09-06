@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Masuk - Kirlogist</title>
+  <title>Daftar - Kirlogist</title>
   <link rel="stylesheet" href="/frontend/css/styles.css">
   <link rel="stylesheet" href="/frontend/css/auth.css">
 </head>
@@ -14,10 +14,15 @@
   <div class="auth-card">
     <div class="auth-header">
       <h2 class="logo-text">Kirlogist</h2>
-      <p>Masuk ke dasbor operasional Anda</p>
+      <p>Daftarkan perusahaan operasional Anda</p>
     </div>
 
-    <form id="loginForm" class="auth-form">
+    <form id="registerForm" class="auth-form">
+      <div class="input-group">
+        <label for="name">Nama Perusahaan</label>
+        <input type="text" id="name" required placeholder="Excelirate">
+      </div>
+
       <div class="input-group">
         <label for="email">Email Perusahaan</label>
         <input type="email" id="email" required placeholder="nama@perusahaan.com">
@@ -29,7 +34,7 @@
       </div>
 
       <div class="input-group">
-        <label for="role">Masuk Sebagai</label>
+        <label for="role">Daftar Sebagai</label>
         <select id="role" required>
           <option value="toko">Toko (Shipper)</option>
           <option value="vendor">Vendor Logistik</option>
@@ -37,12 +42,12 @@
         </select>
       </div>
 
-      <button type="submit" class="btn-primary full-width">Masuk</button>
+      <button type="submit" class="btn-primary full-width">Daftar</button>
     </form>
 
     <div class="auth-footer">
       <a href="index.html">← Kembali ke Beranda</a>
-      <a href="register.html">Belum punya akun? Daftar</a>
+      <a href="login.html">Sudah punya akun? Masuk</a>
     </div>
   </div>
 

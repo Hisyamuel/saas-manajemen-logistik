@@ -1,0 +1,302 @@
+/* Layout Utama Dashboard */
+.dashboard-body {
+    display: flex;
+    min-height: 100vh;
+    background-color: var(--bg-dark);
+}
+
+/* =========================================
+   Sidebar (Kiri)
+========================================= */
+.sidebar {
+    width: 260px;
+    background-color: var(--bg-surface);
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 1.5rem;
+    position: fixed;
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+.sidebar-brand {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 3rem;
+    padding-left: 1rem;
+}
+
+.sidebar-nav {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.nav-item {
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding: 0.85rem 1rem;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    font-weight: 500;
+}
+
+.nav-item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+    text-decoration: none;
+}
+
+.nav-item.active {
+    background-color: rgba(255, 254, 254, 0.116);
+    color: var(--text-primary);
+}
+
+.text-danger {
+    color: #ef4444;
+    /* Merah untuk tombol keluar */
+}
+
+.text-danger:hover {
+    background-color: rgba(255, 168, 168, 0.167);
+    color: #fd5e5e;
+}
+
+/* =========================================
+   Konten Utama (Kanan)
+========================================= */
+.main-content {
+    flex: 1;
+    margin-left: 260px;
+    /* Memberi ruang untuk sidebar fixed */
+    padding: 0 3rem 3rem 3rem;
+    box-sizing: border-box;
+}
+
+/* Header */
+.top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 90px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    margin-bottom: 2rem;
+}
+
+.header-title h1 {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.user-role {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--btn-primary);
+    color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+/* Hamburger Menu Mobile (Default Hidden) */
+.mobile-menu-btn {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 18px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.mobile-menu-btn span {
+    width: 100%;
+    height: 2px;
+    background-color: var(--text-primary);
+}
+
+/* =========================================
+   Kartu Metrik
+========================================= */
+.metrics-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.metric-card {
+    background-color: var(--bg-surface);
+    padding: 1.5rem;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.metric-title {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin: 0 0 1rem 0;
+    font-weight: 500;
+}
+
+.metric-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.metric-value.pending {
+    color: var(--status-pending);
+}
+
+.metric-value.proses {
+    color: var(--status-proses);
+}
+
+.metric-value.selesai {
+    color: var(--status-selesai);
+}
+
+/* =========================================
+   Tabel Data (Borderless Style)
+========================================= */
+.table-section {
+    background-color: var(--bg-surface);
+    padding: 2rem;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.table-header h2 {
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.btn-primary.small {
+    padding: 0.6rem 1.25rem;
+    font-size: 0.9rem;
+    border-radius: 50px;
+    /* Mengikuti gaya kapsul */
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.data-table th,
+.data-table td {
+    padding: 1rem 0.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    /* Border sangat tipis hanya di bawah baris */
+}
+
+.data-table th {
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+/* Badges Status */
+.badge {
+    padding: 0.35rem 0.75rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.badge.pending {
+    background: rgba(234, 179, 8, 0.15);
+    color: var(--status-pending);
+}
+
+.badge.jalan {
+    background: rgba(96, 165, 250, 0.15);
+    color: var(--status-jalan);
+}
+
+.footer-bottom {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+.legal-links a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  margin-left: 1.5rem;
+  transition: color 0.3s ease;
+}
+
+.legal-links a:hover {
+  color: var(--text-primary);
+}
+
+/* =========================================
+   Responsif (Mobile View)
+========================================= */
+@media (max-width: 992px) {
+    .sidebar {
+        transform: translateX(-100%);
+        /* Sembunyikan sidebar ke kiri */
+        transition: transform 0.3s ease;
+        z-index: 1000;
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding: 0 1.5rem 1.5rem 1.5rem;
+    }
+
+    .user-role {
+        display: none;
+        /* Sembunyikan nama role di HP agar tidak sempit */
+    }
+
+    .mobile-menu-btn {
+        display: flex;
+        /* Munculkan hamburger di kanan atas header */
+    }
+}

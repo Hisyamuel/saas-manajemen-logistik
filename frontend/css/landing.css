@@ -39,6 +39,7 @@
   color: var(--text-secondary);
   text-decoration: none;
   font-weight: 500;
+  margin-top: 0;
   transition: color 0.3s ease;
 }
 
@@ -155,7 +156,8 @@
 
 .btn-primary:hover {
   background-color: var(--btn-primary-hover);
-  transform: translateY(-2px); 
+  transform: translateY(-2px);
+  text-decoration: none; 
 }
 
 /* Kolom Kanan (Area Gambar) */
@@ -294,6 +296,15 @@
   min-height: 400px;
 }
 
+.image-placeholder {
+  transition: transform 0.3s ease;
+}
+
+.image-placeholder:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
 /* =========================================
    Footer 
 ========================================= */
@@ -367,6 +378,11 @@
   color: var(--text-secondary);
   text-decoration: none;
   margin-left: 1.5rem;
+  transition: color 0.3s ease;
+}
+
+.legal-links a:hover {
+  color: var(--text-primary);
 }
 
 /* Responsif Tambahan untuk Tablet/Mobile */

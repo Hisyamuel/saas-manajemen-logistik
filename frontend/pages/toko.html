@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Toko - Kirlogis</title>
+    <link rel="stylesheet" href="/frontend/css/styles.css">
+    <link rel="stylesheet" href="/frontend/css/dashboard.css">
+</head>
+
+<body class="dashboard-body">
+
+    <!-- Sidebar Navigasi (Kiri) -->
+    <aside class="sidebar">
+        <div class="sidebar-brand">Kirlogist</div>
+        <nav class="sidebar-nav">
+            <a href="#" class="nav-item active">Beranda</a>
+            <a href="#" class="nav-item">Riwayat Kirim</a>
+            <a href="#" class="nav-item">Pengaturan</a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="index.html" class="nav-item text-danger">Keluar</a>
+        </div>
+    </aside>
+
+    <!-- Konten Utama (Kanan) -->
+    <main class="main-content">
+
+        <!-- Header Atas -->
+        <header class="top-header">
+            <div class="header-title">
+                <h1>Dashboard Shipper</h1>
+            </div>
+
+            <div class="header-actions">
+                <div class="user-profile">
+                    <span class="user-role">Toko Elektronik Makmur</span>
+                    <div class="avatar">T</div>
+                </div>
+                <!-- Hamburger Menu di posisi kanan atas untuk mobile -->
+                <button class="mobile-menu-btn" aria-label="Buka Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Area Metrik -->
+        <section class="metrics-section">
+            <div class="metric-card">
+                <h3 class="metric-title">Menunggu Vendor</h3>
+                <p class="metric-value pending">12</p>
+            </div>
+            <div class="metric-card">
+                <h3 class="metric-title">Dalam Perjalanan</h3>
+                <p class="metric-value proses">5</p>
+            </div>
+            <div class="metric-card">
+                <h3 class="metric-title">Selesai Bulan Ini</h3>
+                <p class="metric-value selesai">48</p>
+            </div>
+        </section>
+
+        <!-- Area Tabel Riwayat -->
+        <section class="table-section">
+            <div class="table-header">
+                <h2>Pengiriman Aktif</h2>
+                <button class="btn-primary small">Buat Permintaan</button>
+            </div>
+
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID Resi</th>
+                            <th>Nama Barang</th>
+                            <th>Tujuan</th>
+                            <th>Status</th>
+                            <th>Vendor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#KRL-9921</td>
+                            <td>Kulkas 2 Pintu</td>
+                            <td>Gudang Selatan</td>
+                            <td><span class="badge pending">Mencari Vendor</span></td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>#KRL-9920</td>
+                            <td>TV LED 50" (5 Unit)</td>
+                            <td>Toko Cabang Barat</td>
+                            <td><span class="badge jalan">Dalam Perjalanan</span></td>
+                            <td>Logistik Cepat CV</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="footer-bottom">
+            <p>&copy; Kirlogist 2026</p>
+            <div class="legal-links">
+                <a href="#">Kebijakan Privasi</a>
+                <a href="#">Syarat & Ketentuan</a>
+            </div>
+        </section>
+
+    </main>
+
+</body>
+
+</html>

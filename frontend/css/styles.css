@@ -6,7 +6,7 @@
   --text-secondary: #a0a0a0;
   
   /* Warna Primer & Status */
-  --btn-primary: #e0e0e0;  
+  --btn-primary: #d4d1d1;  
   --btn-primary-hover: #ffffff;
   
   --status-pending: #eab308; 
@@ -21,4 +21,17 @@ body {
   font-family: 'Inter', sans-serif;
   margin: 0;
   padding: 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+a {
+  text-decoration: none;
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  text-decoration: underline;
 }
