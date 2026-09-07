@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Toko - Kirlogist</title>
+    <title>Riwayat Kirim - Kirlogist</title>
     <link rel="stylesheet" href="/frontend/css/styles.css">
     <link rel="stylesheet" href="/frontend/css/dashboard.css">
 </head>
@@ -15,8 +15,9 @@
     <aside class="sidebar">
         <div class="sidebar-brand">Kirlogist</div>
         <nav class="sidebar-nav">
-            <a href="#" class="nav-item active">Beranda</a>
-            <a href="riwayat.html" class="nav-item">Riwayat Kirim</a>
+            <!-- Nav-item active dipindah ke Riwayat Kirim -->
+            <a href="toko.html" class="nav-item">Beranda</a>
+            <a href="riwayat.html" class="nav-item active">Riwayat Kirim</a>
             <a href="pengaturan.html" class="nav-item">Pengaturan</a>
         </nav>
         <div class="sidebar-footer">
@@ -27,10 +28,10 @@
     <!-- Konten Utama (Kanan) -->
     <main class="main-content loader">
 
-        <!-- Header Atas -->
+        <!-- Header Atas (Sama seperti dashboard) -->
         <header class="top-header">
             <div class="header-title">
-                <h1>Dashboard Shipper</h1>
+                <h1>Riwayat Pengiriman</h1>
             </div>
 
             <div class="header-actions">
@@ -39,8 +40,6 @@
                         <span class="user-role">Toko Elektronik Makmur</span>
                         <div class="avatar">T</div>
                     </div>
-    
-                    <!-- Isi Dropdown -->
                     <div class="dropdown-menu">
                         <div class="dropdown-header">
                             <strong>Admin Toko</strong>
@@ -53,40 +52,39 @@
                         <a href="index.html" class="dropdown-item text-danger">Keluar</a>
                     </div>
                 </div>
-                <!-- Hamburger Menu di posisi kanan atas untuk mobile -->
                 <button class="mobile-menu-btn" aria-label="Buka Menu">
                     <span></span><span></span><span></span>
                 </button>
             </div>
         </header>
 
-        <!-- Area Metrik -->
-        <section class="metrics-section">
-            <div class="metric-card">
-                <h3 class="metric-title">Menunggu Vendor</h3>
-                <p class="metric-value pending">12</p>
-            </div>
-            <div class="metric-card">
-                <h3 class="metric-title">Dalam Perjalanan</h3>
-                <p class="metric-value proses">5</p>
-            </div>
-            <div class="metric-card">
-                <h3 class="metric-title">Selesai Bulan Ini</h3>
-                <p class="metric-value selesai">48</p>
-            </div>
-        </section>
-
-        <!-- Area Tabel Riwayat -->
-        <section class="table-section">
-            <div class="table-header">
-                <h2>Pengiriman Aktif</h2>
-                <button id="btnBuatPermintaan" class="btn-primary small">Buat Permintaan</button>
+        <!-- Area Tabel Riwayat Penuh -->
+        <section class="table-section full-page">
+            
+            <!-- Baris Filter & Pencarian -->
+            <div class="filter-bar">
+                <div class="input-group search-bar">
+                    <input type="text" placeholder="Cari ID Resi, Nama Barang, atau Tujuan...">
+                </div>
+                
+                <div class="input-group filter-select">
+                    <select>
+                        <option value="">Semua Status</option>
+                        <option value="pending">Mencari Vendor</option>
+                        <option value="jalan">Dalam Perjalanan</option>
+                        <option value="selesai">Selesai</option>
+                    </select>
+                </div>
+                
+                <button class="btn-outline filter-btn">Terapkan</button>
             </div>
 
+            <!-- Tabel Data -->
             <div class="table-container">
                 <table class="data-table">
                     <thead>
                         <tr>
+                            <th>Tanggal</th>
                             <th>ID Resi</th>
                             <th>Nama Barang</th>
                             <th>Tujuan</th>
@@ -96,25 +94,53 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>#KRL-9921</td>
-                            <td>Kulkas 2 Pintu</td>
-                            <td>Gudang Selatan</td>
+                            <td>07 Sep 2026</td>
+                            <td>#KRL-9922</td>
+                            <td>AC Split 1 PK (2 Unit)</td>
+                            <td>Gudang Utara</td>
                             <td><span class="badge pending">Mencari Vendor</span></td>
                             <td>-</td>
                         </tr>
                         <tr>
+                            <td>06 Sep 2026</td>
+                            <td>#KRL-9921</td>
+                            <td>Kulkas 2 Pintu</td>
+                            <td>Gudang Selatan</td>
+                            <td><span class="badge jalan">Dalam Perjalanan</span></td>
+                            <td>Logistik Cepat CV</td>
+                        </tr>
+                        <tr>
+                            <td>05 Sep 2026</td>
                             <td>#KRL-9920</td>
                             <td>TV LED 50" (5 Unit)</td>
                             <td>Toko Cabang Barat</td>
-                            <td><span class="badge jalan">Dalam Perjalanan</span></td>
-                            <td>Logistik Cepat CV</td>
+                            <td><span class="badge selesai" style="background: rgba(34, 197, 94, 0.15); color: var(--status-selesai);">Selesai</span></td>
+                            <td>Transporter Jaya</td>
+                        </tr>
+                        <tr>
+                            <td>01 Sep 2026</td>
+                            <td>#KRL-9915</td>
+                            <td>Mesin Cuci Front Load</td>
+                            <td>Perumahan Elite</td>
+                            <td><span class="badge selesai" style="background: rgba(34, 197, 94, 0.15); color: var(--status-selesai);">Selesai</span></td>
+                            <td>KirimAman Corp</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
+
+            <!-- Paginasi -->
+            <div class="pagination">
+                <button class="page-btn" disabled>&laquo;</button>
+                <button class="page-btn active">1</button>
+                <button class="page-btn">2</button>
+                <button class="page-btn">3</button>
+                <button class="page-btn">&raquo;</button>
+            </div>
+
         </section>
 
-        <section class="footer-bottom">
+        <section class="footer-bottom" style="margin-top: 2rem;">
             <p>&copy; Kirlogist 2026</p>
             <div class="legal-links">
                 <a href="#">Kebijakan Privasi</a>
@@ -123,45 +149,6 @@
         </section>
 
     </main>
-
-    <!-- =========================================
-       Modal Buat Permintaan Kirim
-    ========================================= -->
-    <div id="createRequestModal" class="modal-overlay">
-        <div class="modal-container">
-        
-        <div class="modal-header">
-            <h2>Buat Permintaan Kirim</h2>
-            <button class="close-modal-btn icon-btn" aria-label="Tutup">&times;</button>
-        </div>
-        
-        <div class="modal-body">
-            <form id="createRequestForm">
-            <div class="input-group">
-                <label for="namaBarang">Nama Barang</label>
-                <!-- Input sesuai instruksi PRD -->
-                <input type="text" id="namaBarang" required placeholder="Contoh: Kulkas 2 Pintu">
-            </div>
-            
-            <div class="input-group">
-                <label for="beratBarang">Berat Total (Kg)</label>
-                <input type="number" id="beratBarang" required placeholder="Contoh: 15" min="1">
-            </div>
-            
-            <div class="input-group">
-                <label for="alamatTujuan">Alamat Tujuan Lengkap</label>
-                <textarea id="alamatTujuan" rows="3" required placeholder="Nama Jalan, Gedung, RT/RW, Kota..."></textarea>
-            </div>
-            </form>
-        </div>
-        
-        <div class="modal-footer">
-            <button type="button" class="btn-outline close-modal-btn">Batal</button>
-            <button type="submit" form="createRequestForm" class="btn-primary small">Simpan & Cari Vendor</button>
-        </div>
-
-        </div>
-    </div>
 
     <!-- =========================================
        Modal Profil Saya
@@ -207,31 +194,7 @@
         </div>
     </div>
 
-    <!-- Script Vanilla JS untuk interaksi modal -->
     <script>
-        const modal = document.getElementById('createRequestModal');
-        const btnOpen = document.getElementById('btnBuatPermintaan');
-        const btnsClose = document.querySelectorAll('.close-modal-btn');
-
-        // Fungsi membuka modal
-        btnOpen.addEventListener('click', () => {
-        modal.classList.add('active');
-        });
-
-        // Fungsi menutup modal lewat tombol "X" atau "Batal"
-        btnsClose.forEach(btn => {
-        btn.addEventListener('click', () => {
-            modal.classList.remove('active');
-        });
-        });
-
-        // Menutup modal jika area di luar kotak hitam (overlay) diklik
-        modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            modal.classList.remove('active');
-        }
-        });
-
         // --- Modal Buat Permintaan ---
         const reqModal = document.getElementById('createRequestModal');
         const btnOpenReq = document.getElementById('btnBuatPermintaan');
@@ -268,5 +231,4 @@
     </script>
 
 </body>
-
 </html>

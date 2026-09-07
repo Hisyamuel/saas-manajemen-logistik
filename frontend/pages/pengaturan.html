@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengaturan - Kirlogist</title>
+    <link rel="stylesheet" href="/frontend/css/styles.css">
+    <link rel="stylesheet" href="/frontend/css/dashboard.css">
+</head>
+
+<body class="dashboard-body">
+
+    <!-- Sidebar Navigasi -->
+    <aside class="sidebar">
+        <div class="sidebar-brand">Kirlogist</div>
+        <nav class="sidebar-nav">
+            <a href="toko.html" class="nav-item">Beranda</a>
+            <a href="riwayat.html" class="nav-item">Riwayat Kirim</a>
+            <a href="pengaturan.html" class="nav-item active">Pengaturan</a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="index.html" class="nav-item text-danger">Keluar</a>
+        </div>
+    </aside>
+
+    <!-- Konten Utama -->
+    <main class="main-content loader">
+        <header class="top-header">
+            <div class="header-title">
+                <h1>Pengaturan Toko</h1>
+            </div>
+            <!-- Bagian profil diringkas demi keterbacaan, samakan dengan toko.html -->
+            <div class="header-actions">
+                <div class="user-profile-dropdown">
+                    <div class="user-profile">
+                        <span class="user-role">Toko Elektronik Makmur</span>
+                        <div class="avatar">T</div>
+                    </div>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-header">
+                            <strong>Admin Toko</strong>
+                            <span>admin@makmur.com</span>
+                        </div>
+                        <hr class="dropdown-divider">
+                        <a href="#" class="dropdown-item">Profil Saya</a>
+                        <a href="#" class="dropdown-item">Ganti Akun</a>
+                        <hr class="dropdown-divider">
+                        <a href="index.html" class="dropdown-item text-danger">Keluar</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Area Form Pengaturan -->
+        <section class="table-section" style="max-width: 800px;">
+            <div class="table-header" style="margin-bottom: 2rem;">
+                <h2>Informasi Perusahaan</h2>
+                <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.5rem;">Perbarui detail toko atau alamat default pengambilan barang Anda.</p>
+            </div>
+
+            <form class="settings-form">
+                <div class="input-group">
+                    <label>Nama Perusahaan / Toko</label>
+                    <input type="text" value="Toko Elektronik Makmur">
+                </div>
+                
+                <div class="input-group">
+                    <label>Email Utama</label>
+                    <input type="email" value="admin@makmur.com">
+                </div>
+
+                <div class="input-group">
+                    <label>Alamat Penjemputan Default</label>
+                    <textarea rows="3">Jl. Gatot Subroto No. 45, Ruko Indah Jaya, Kaltim</textarea>
+                </div>
+
+                <div class="input-group" style="display: flex; align-items: center; gap: 1rem; margin-top: 2rem;">
+                    <input type="checkbox" id="notifEmail" checked style="width: auto; margin: 0;">
+                    <label for="notifEmail" style="margin: 0; font-size: 0.95rem; color: var(--text-primary);">Kirim notifikasi email setiap status barang berubah</label>
+                </div>
+
+                <div style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.05);">
+                    <button type="button" class="btn-primary small">Simpan Pengaturan</button>
+                </div>
+            </form>
+        </section>
+
+    </main>
+
+     <!-- =========================================
+       Modal Profil Saya
+    ========================================= -->
+    <div id="profileModal" class="modal-overlay">
+        <div class="modal-container" style="max-width: 450px;">
+            <div class="modal-header">
+                <h2>Profil Saya</h2>
+                <button class="close-profile-btn icon-btn" aria-label="Tutup">&times;</button>
+            </div>
+            
+            <div class="modal-body">
+                <form id="profileForm">
+                    <!-- Area Edit Foto Profil -->
+                    <div class="avatar-edit-container">
+                        <div class="avatar-large">T</div>
+                        <button type="button" class="btn-outline small-pill">Ubah Foto</button>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="namaUser">Nama Lengkap</label>
+                        <input type="text" id="namaUser" value="Admin Toko Elektronik">
+                    </div>
+
+                    <hr class="dropdown-divider" style="margin: 1.5rem 0;">
+                    <h3 style="font-size: 1rem; margin-top: 0; margin-bottom: 1rem;">Ganti Kata Sandi</h3>
+
+                    <div class="input-group">
+                        <label for="oldPassword">Kata Sandi Saat Ini</label>
+                        <input type="password" id="oldPassword" placeholder="Masukkan sandi lama">
+                    </div>
+                    <div class="input-group">
+                        <label for="newPassword">Kata Sandi Baru</label>
+                        <input type="password" id="newPassword" placeholder="Buat sandi baru">
+                    </div>
+                </form>
+            </div>
+            
+            <div class="modal-footer">
+                <button type="button" class="btn-outline close-profile-btn">Batal</button>
+                <button type="submit" form="profileForm" class="btn-primary small">Simpan Perubahan</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- Modal Buat Permintaan ---
+        const reqModal = document.getElementById('createRequestModal');
+        const btnOpenReq = document.getElementById('btnBuatPermintaan');
+        const btnsCloseReq = document.querySelectorAll('.close-modal-btn');
+
+        if (btnOpenReq) {
+            btnOpenReq.addEventListener('click', () => reqModal.classList.add('active'));
+        }
+        btnsCloseReq.forEach(btn => btn.addEventListener('click', () => reqModal.classList.remove('active')));
+        if (reqModal) {
+            reqModal.addEventListener('click', (e) => {
+                if (e.target === reqModal) reqModal.classList.remove('active');
+            });
+        }
+
+        // --- Modal Profil Saya ---
+        const profModal = document.getElementById('profileModal');
+        // Panggil dari tombol dropdown Profil Saya
+        const btnOpenProf = document.querySelector('.dropdown-item:nth-child(3)'); 
+        const btnsCloseProf = document.querySelectorAll('.close-profile-btn');
+
+        if (btnOpenProf) {
+            btnOpenProf.addEventListener('click', (e) => {
+                e.preventDefault(); // Mencegah pindah halaman
+                profModal.classList.add('active');
+            });
+        }
+        btnsCloseProf.forEach(btn => btn.addEventListener('click', () => profModal.classList.remove('active')));
+        if (profModal) {
+            profModal.addEventListener('click', (e) => {
+                if (e.target === profModal) profModal.classList.remove('active');
+            });
+        }
+    </script>
+</body>
+</html>

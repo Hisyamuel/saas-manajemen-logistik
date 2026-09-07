@@ -143,6 +143,7 @@
 
 /* Tombol ala AgenticX (Kapsul) */
 .btn-primary {
+  margin-top: 0.5rem;
   display: inline-block;
   background-color: var(--btn-primary);
   color: #000;

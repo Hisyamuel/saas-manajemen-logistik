@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,127 +8,134 @@
   <link rel="stylesheet" href="/frontend/css/styles.css">
   <link rel="stylesheet" href="/frontend/css/landing.css">
 </head>
+
 <body>
-  <!-- Navigasi Utama -->
-  <nav class="navbar">
-    <div class="logo">Kirlogist</div>
-    
-    <!-- Hamburger Menu -->
-    <button class="hamburger-menu-top-right" aria-label="Menu">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
+  <div class="loader">
+    <!-- Navigasi Utama -->
+    <nav class="navbar">
+      <div class="logo">Kirlogist</div>
 
-    <div class="nav-links">
-      <a href="#how">How</a>
-      <a href="#kapabilitas">Kapabilitas</a>
-      <a href="login.html" class="btn-outline">Masuk</a>
-    </div>
-  </nav>
+      <!-- Hamburger Menu -->
+      <button class="hamburger-menu-top-right" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
 
-  <!-- Hero Section ala AgenticX -->
-  <header class="hero-section">
-    <div class="hero-content">
-      
-      <!-- Kolom Kiri: Teks, Garis, dan Tombol -->
-      <div class="hero-text-area">
-        <h1 id="hero" class="hero-title">Manajemen Logistik,<br>Sederhana dan Cepat.</h1>
-        <p class="hero-subtitle">Penghubung andal antara Toko, Vendor, dan Supir dalam satu ekosistem terpadu.</p>
-        
-        <hr class="hero-divider">
-        
-        <a href="login.html" class="btn-primary">Mulai Sekarang</a>
+      <div class="nav-links">
+        <a href="#how">How</a>
+        <a href="#kapabilitas">Kapabilitas</a>
+        <a href="login.html" class="btn-outline">Masuk</a>
       </div>
-      
-      <!-- Kolom Kanan: Tempat Gambar/Grafis -->
-      <div class="hero-image-area">
-        <!-- Nanti kamu bisa memasukkan tag <img> atau partikel di sini -->
-        <div class="image-placeholder">
-          <span>Area Gambar/Ilustrasi</span>
+    </nav>
+
+    <!-- Hero Section ala AgenticX -->
+    <header class="hero-section">
+      <div class="hero-content">
+
+        <!-- Kolom Kiri: Teks, Garis, dan Tombol -->
+        <div class="hero-text-area">
+          <h1 id="hero" class="hero-title">Manajemen Logistik,<br>Sederhana, dan Cepat.</h1>
+          <p class="hero-subtitle">Penghubung andal antara Toko, Vendor, dan Supir dalam satu ekosistem terpadu.</p>
+          <hr class="hero-divider">
+          <a href="login.html" class="btn-primary">Mulai Sekarang</a>
+        </div>
+
+        <!-- Kolom Kanan: Tempat Gambar/Grafis -->
+        <div class="hero-image-area">
+          <!-- Nanti kamu bisa memasukkan tag <img> atau partikel di sini -->
+          <div class="image-placeholder">
+            <span>Area Gambar/Ilustrasi</span>
+          </div>
+        </div>
+
+      </div>
+    </header>
+    <!-- =========================================
+          Bagian Fitur (How Kirlogis Helps) 
+      ========================================= -->
+    <section id="how" class="features-section">
+      <div class="section-header center">
+        <h2 class="section-title">Bagaimana Kirlogist membantu Anda?</h2>
+        <p class="section-subtitle">
+          Fitur otomatisasi alur kerja logistik yang meningkatkan kecepatan pengiriman
+          dan membantu tim beroperasi lebih efisien.
+        </p>
+      </div>
+
+      <div class="features-grid">
+        <!-- Kartu Fitur 1 -->
+        <div class="feature-card">
+          <div class="feature-icon">⏱️</div>
+          <h3 class="feature-title">Hemat Waktu</h3>
+          <p class="feature-desc">Menghilangkan proses manual yang memakan waktu melalui sistem alur tugas cerdas.</p>
+        </div>
+        <!-- Kartu Fitur 2 -->
+        <div class="feature-card">
+          <div class="feature-icon">📉</div>
+          <h3 class="feature-title">Kurangi Kesalahan</h3>
+          <p class="feature-desc">Standardisasi proses rutin di seluruh alur pengiriman.</p>
+        </div>
+        <!-- Kartu Fitur 3 -->
+        <div class="feature-card">
+          <div class="feature-icon">🎯</div>
+          <h3 class="feature-title">Fokus pada Bisnis</h3>
+          <p class="feature-desc">Menargetkan pekerjaan dengan dampak yang tinggi, bukan kesibukan operasional.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================
+          Bagian Core Capabilities
+      ========================================= -->
+    <section id="kapabilitas" class="capabilities-section">
+      <div class="cap-header">
+        <h2 class="section-title">Kapabilitas Utama</h2>
+        <p class="section-subtitle right-align">Kirlogist dirancang untuk mengambil alih tugas berulang. Dari mengatur
+          data pesanan hingga mengeksekusi alur pengiriman antar vendor.</p>
+      </div>
+      <div class="cap-visual-grid">
+        <div class="image-placeholder large"><span>Dashboard Pantauan Real-time</span></div>
+        <div class="image-placeholder large"><span>Sistem Bursa Vendor (Job Board)</span></div>
+      </div>
+    </section>
+
+    <!-- =========================================
+          Footer (Bagian Bawah)
+      ========================================= -->
+    <footer class="site-footer">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <h2 class="logo">Kirlogist</h2>
+          <p>Sistem manajemen logistik B2B yang menyederhanakan tugas harian Anda.</p>
+        </div>
+
+        <div class="footer-links-group">
+          <div class="footer-col">
+            <h4>TAUTAN</h4>
+            <a href="#hero">Tentang</a>
+            <a href="#harga">Harga</a>
+            <a href="https://hisyamuel.github.io/profil-blog-hisyam/" target="_blank">Blog</a>
+          </div>
+          <div class="footer-col">
+            <h4>KONTAK</h4>
+            <a href="mailto:hisyam4633@gmail.com">hisyam4633@gmail.com</a>
+            <a href="tel:+6282159103747">(+62) 821-5910-3747</a>
+            <a href="https://www.instagram.com/smhsymz" target="_blank">Instagram</a>
+          </div>
         </div>
       </div>
 
-    </div>
-  </header>
-  <!-- =========================================
-       Bagian Fitur (How Kirlogis Helps) 
-  ========================================= -->
-  <section id="how" class="features-section">
-    <div class="section-header center">
-      <h2 class="section-title">Bagaimana Kirlogist Membantu</h2>
-      <p class="section-subtitle">Otomatisasi alur kerja logistik harian Anda, tingkatkan kecepatan pengiriman, dan bantu tim beroperasi lebih efisien.</p>
-    </div>
-
-    <div class="features-grid">
-      <!-- Kartu Fitur 1 -->
-      <div class="feature-card">
-        <div class="feature-icon">⏱️</div>
-        <h3 class="feature-title">Hemat Waktu</h3>
-        <p class="feature-desc">Hilangkan proses manual yang memakan waktu melalui sistem alur tugas cerdas.</p>
-      </div>
-      <!-- Kartu Fitur 2 -->
-      <div class="feature-card">
-        <div class="feature-icon">📉</div>
-        <h3 class="feature-title">Kurangi Kesalahan</h3>
-        <p class="feature-desc">Standardisasi proses rutin di seluruh alur pengiriman Anda.</p>
-      </div>
-      <!-- Kartu Fitur 3 -->
-      <div class="feature-card">
-        <div class="feature-icon">🎯</div>
-        <h3 class="feature-title">Fokus pada Bisnis</h3>
-        <p class="feature-desc">Habiskan lebih banyak waktu pada pekerjaan berdampak tinggi, bukan kesibukan operasional.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- =========================================
-       Bagian Core Capabilities
-  ========================================= -->
-  <section id="kapabilitas" class="capabilities-section">
-    <div class="cap-header">
-      <h2 class="section-title">Kapabilitas Utama</h2>
-      <p class="section-subtitle right-align">Kirlogis dirancang untuk mengambil alih tugas berulang. Dari mengatur data pesanan hingga mengeksekusi alur pengiriman antar vendor.</p>
-    </div>
-    <div class="cap-visual-grid">
-      <div class="image-placeholder large"><span>Dashboard Pantauan Real-time</span></div>
-      <div class="image-placeholder large"><span>Sistem Bursa Vendor (Job Board)</span></div>
-    </div>
-  </section>
-
-  <!-- =========================================
-       Footer (Bagian Bawah)
-  ========================================= -->
-  <footer class="site-footer">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <h2 class="logo">Kirlogist</h2>
-        <p>Sistem manajemen logistik B2B yang menyederhanakan tugas harian Anda.</p>
-      </div>
-      
-      <div class="footer-links-group">
-        <div class="footer-col">
-          <h4>TAUTAN</h4>
-          <a href="#hero">Tentang</a>
-          <a href="#harga">Harga</a>
-          <a href="https://hisyamuel.github.io/profil-blog-hisyam/" target="_blank">Blog</a>
-        </div>
-        <div class="footer-col">
-          <h4>KONTAK</h4>
-          <a href="mailto:hisyam4633@gmail.com">hisyam4633@gmail.com</a>
-          <a href="tel:+6282159103747">(+62) 821-5910-3747</a>
-          <a href="https://www.instagram.com/smhsymz" target="_blank">Instagram</a>
+      <div class="footer-bottom">
+        <p>&copy; Kirlogist 2026</p>
+        <div class="legal-links">
+          <a href="#">Kebijakan Privasi</a>
+          <a href="#">Syarat & Ketentuan</a>
         </div>
       </div>
-    </div>
-    
-    <div class="footer-bottom">
-      <p>&copy; Kirlogist 2026</p>
-      <div class="legal-links">
-        <a href="#">Kebijakan Privasi</a>
-        <a href="#">Syarat & Ketentuan</a>
-      </div>
-    </div>
-  </footer>
+    </footer>
+  </div>
+
 </body>
+
 </html>

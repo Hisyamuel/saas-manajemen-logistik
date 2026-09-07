@@ -10,47 +10,48 @@
 </head>
 
 <body class="auth-layout">
+  <div class="loader">
+    <div class="auth-card">
+      <div class="auth-header">
+        <h2 class="logo-text">Kirlogist</h2>
+        <p>Masuk ke dasbor operasional Anda</p>
+      </div>
 
-  <div class="auth-card">
-    <div class="auth-header">
-      <h2 class="logo-text">Kirlogist</h2>
-      <p>Masuk ke dasbor operasional Anda</p>
+      <form id="loginForm" class="auth-form">
+        <div class="input-group">
+          <label for="email">Email Perusahaan</label>
+          <input type="email" id="email" required placeholder="nama@perusahaan.com">
+        </div>
+
+        <div class="input-group">
+          <label for="password">Kata Sandi</label>
+          <input type="password" id="password" required>
+        </div>
+
+        <div class="input-group">
+          <label for="role">Masuk Sebagai</label>
+          <select id="role" required>
+            <option value="toko">Toko (Shipper)</option>
+            <option value="vendor">Vendor Logistik</option>
+            <option value="supir">Supir (Driver)</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn-primary full-width">Masuk</button>
+      </form>
+
+      <div class="auth-footer">
+        <a href="index.html">← Kembali ke Beranda</a>
+        <a href="register.html">Belum punya akun? Daftar</a>
+      </div>
     </div>
 
-    <form id="loginForm" class="auth-form">
-      <div class="input-group">
-        <label for="email">Email Perusahaan</label>
-        <input type="email" id="email" required placeholder="nama@perusahaan.com">
+    <div class="footer-bottom">
+      <p>&copy; Kirlogist 2026</p>
+      <div class="legal-links">
+        <a href="#">Kebijakan Privasi</a>
+        <a href="#">Syarat & Ketentuan</a>
       </div>
-
-      <div class="input-group">
-        <label for="password">Kata Sandi</label>
-        <input type="password" id="password" required>
-      </div>
-
-      <div class="input-group">
-        <label for="role">Masuk Sebagai</label>
-        <select id="role" required>
-          <option value="toko">Toko (Shipper)</option>
-          <option value="vendor">Vendor Logistik</option>
-          <option value="supir">Supir (Driver)</option>
-        </select>
-      </div>
-
-      <button type="submit" class="btn-primary full-width">Masuk</button>
-    </form>
-
-    <div class="auth-footer">
-      <a href="index.html">← Kembali ke Beranda</a>
-      <a href="register.html">Belum punya akun? Daftar</a>
-    </div>
-  </div>
-
-  <div class="footer-bottom">
-    <p>&copy; Kirlogist 2026</p>
-    <div class="legal-links">
-      <a href="#">Kebijakan Privasi</a>
-      <a href="#">Syarat & Ketentuan</a>
     </div>
   </div>
 

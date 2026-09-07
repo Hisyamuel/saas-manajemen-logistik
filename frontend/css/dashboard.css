@@ -22,7 +22,7 @@
 
 .sidebar-brand {
     font-size: 1.8rem;
-    font-weight: 800;
+    font-weight: 700;
     color: var(--text-primary);
     margin-bottom: 3rem;
     padding-left: 1rem;
@@ -120,6 +120,108 @@
     font-weight: bold;
 }
 
+/* =========================================
+   Profile Dropdown
+========================================= */
+.user-profile-dropdown {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 120%;
+    right: 0;
+    width: 220px;
+    background-color: var(--bg-surface);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 100;
+}
+
+/* Memunculkan dropdown saat di-hover */
+.user-profile-dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-header {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.dropdown-header strong {
+    color: var(--text-primary);
+    font-size: 0.95rem;
+}
+
+.dropdown-header span {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+
+.dropdown-divider {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    margin: 0;
+}
+
+.dropdown-item {
+    display: block;
+    padding: 0.75rem 1rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.dropdown-item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+    text-decoration: none;
+}
+
+.dropdown-item.text-danger:hover {
+    background-color: rgba(239, 68, 68, 0.1); /* Latar merah transparan */
+    color: #ef4444;
+}
+
+/* Styling Khusus Modal Profil */
+.avatar-edit-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.avatar-large {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: var(--btn-primary);
+    color: #000;
+    font-size: 2rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.small-pill {
+    padding: 0.4rem 1rem;
+    font-size: 0.8rem;
+}
+
 /* Hamburger Menu Mobile (Default Hidden) */
 .mobile-menu-btn {
     display: none;
@@ -150,10 +252,18 @@
 }
 
 .metric-card {
+    cursor: pointer;
     background-color: var(--bg-surface);
     padding: 1.5rem;
     border-radius: 16px;
     border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.metric-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 255, 255, 0.3); /* Border menjadi lebih terang */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .metric-title {
@@ -185,10 +295,18 @@
    Tabel Data (Borderless Style)
 ========================================= */
 .table-section {
+    cursor: pointer;
     background-color: var(--bg-surface);
     padding: 2rem;
     border-radius: 16px;
     border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.table-section:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 255, 255, 0.3); /* Border menjadi lebih terang */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .table-header {
@@ -207,7 +325,14 @@
     padding: 0.6rem 1.25rem;
     font-size: 0.9rem;
     border-radius: 50px;
-    /* Mengikuti gaya kapsul */
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-primary.small:hover {
+    transform: translateY(-2px);
+    background-color: var(--btn-primary-hover);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .table-container {
@@ -272,6 +397,220 @@
 
 .legal-links a:hover {
   color: var(--text-primary);
+}
+
+/* =========================================
+   Modal / Pop-up Form
+========================================= */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Memastikan modal selalu di posisi paling depan */
+    
+    /* Animasi tersembunyi secara default */
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-container {
+    background-color: var(--bg-surface);
+    width: 100%;
+    max-width: 500px;
+    border-radius: 20px; /* Sudut membulat modern */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+    
+    /* Animasi pop-up (mengembang dari bawah) */
+    transform: scale(0.95) translateY(20px);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-overlay.active .modal-container {
+    transform: scale(1) translateY(0);
+}
+
+.modal-header {
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.icon-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.8rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.icon-btn:hover {
+    color: var(--text-primary);
+}
+
+.modal-body {
+    padding: 2rem;
+}
+
+/* =========================================
+   Styling Form di dalam Modal
+========================================= */
+.input-group {
+    margin-bottom: 1.5rem;
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-bottom: 0.6rem;
+}
+
+.input-group input, 
+.input-group textarea {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    background-color: rgba(0,0,0,0.2);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--text-primary);
+    border-radius: 12px;
+    box-sizing: border-box;
+    font-family: inherit;
+    transition: all 0.3s ease;
+}
+
+.input-group textarea {
+    resize: vertical; /* User bisa menarik kolom textarea ke bawah */
+}
+
+.input-group input:focus,
+.input-group textarea:focus {
+    outline: none;
+    border-color: var(--text-primary);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-footer {
+    padding: 1.5rem 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+/* Modifikasi tombol outline spesifik untuk di dalam modal */
+.btn-outline {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-primary);
+    padding: 0.6rem 1.25rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.btn-outline:hover {
+    border-color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* =========================================
+   Halaman Riwayat Kirim (Filter & Paginasi)
+========================================= */
+.filter-bar {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    align-items: center;
+    flex-wrap: wrap; /* Agar rapi saat dibuka di HP */
+}
+
+.filter-bar .input-group {
+    margin-bottom: 0; /* Menghilangkan margin bawaan input-group */
+}
+
+.filter-bar .search-bar {
+    flex: 2;
+    min-width: 250px;
+}
+
+.filter-bar .filter-select {
+    flex: 1;
+    min-width: 150px;
+}
+
+.filter-select {
+    border-radius: 16px;
+}
+
+/* Memperkecil tinggi input khusus untuk area filter */
+.filter-bar .input-group input,
+.filter-bar .input-group select {
+    border-radius: 10px;
+    padding: 0.8rem 1.25rem;
+    cursor: pointer;
+}
+
+.filter-btn {
+    padding: 0.8rem 1.5rem;
+    height: 100%;
+}
+
+/* Paginasi */
+.pagination {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin-top: 2rem;
+}
+
+.page-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: 500;
+}
+
+.page-btn:hover:not([disabled]), 
+.page-btn.active {
+    background: var(--btn-primary);
+    color: #000;
+    border-color: var(--btn-primary);
+}
+
+.page-btn[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 /* =========================================
