@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manajemen Supir (Vendor) - Kirlogist</title>
+    <link rel="stylesheet" href="/frontend/css/styles.css">
+    <link rel="stylesheet" href="/frontend/css/dashboard.css">
+</head>
+
+<body class="dashboard-body">
+
+    <!-- Sidebar Navigasi Vendor -->
+    <aside class="sidebar">
+        <div class="sidebar-brand">Kirlogist</div>
+        <nav class="sidebar-nav">
+            <a href="vendor.html" class="nav-item">Bursa Pengiriman</a>
+            <a href="manajemen-supir.html" class="nav-item active">Manajemen Supir</a>
+            <a href="pengaturan.html" class="nav-item">Pengaturan</a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="index.html" class="nav-item text-danger">Keluar</a>
+        </div>
+    </aside>
+
+    <!-- Konten Utama -->
+    <main class="main-content loader">
+        <!-- Header Atas -->
+        <header class="top-header">
+            <div class="header-title">
+                <h1>Armada & Supir</h1>
+            </div>
+
+            <div class="header-actions">
+                <div class="user-profile-dropdown">
+                    <div class="user-profile">
+                        <span class="user-role">Logistik Cepat CV</span>
+                        <div class="avatar">L</div>
+                    </div>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-header">
+                            <strong>Admin Vendor</strong>
+                            <span>admin@logistikcepat.com</span>
+                        </div>
+                        <hr class="dropdown-divider">
+                        <a href="#" class="dropdown-item btn-profil-modal">Profil Saya</a>
+                        <a href="#" class="dropdown-item">Ganti Akun</a>
+                        <hr class="dropdown-divider">
+                        <a href="index.html" class="dropdown-item text-danger">Keluar</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Area Tabel Supir -->
+        <section class="table-section">
+            <div class="table-header">
+                <h2>Daftar Supir Aktif</h2>
+                <button id="btnTambahSupir" class="btn-primary small">Tambah Supir</button>
+            </div>
+
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Nama Supir</th>
+                            <th>No. Handphone</th>
+                            <th>Kendaraan</th>
+                            <th>Plat Nomor</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Budi Santoso</td>
+                            <td>0812-3456-7890</td>
+                            <td>Truk Engkel Bak</td>
+                            <td>KT 8821 XX</td>
+                            <td><span class="badge"
+                                    style="background: rgba(34, 197, 94, 0.15); color: var(--status-selesai);">Siap
+                                    Bertugas</span></td>
+                        </tr>
+                        <tr>
+                            <td>Andi Wijaya</td>
+                            <td>0819-8765-4321</td>
+                            <td>Mobil Pick Up</td>
+                            <td>KT 1234 YY</td>
+                            <td><span class="badge jalan">Sedang Mengirim</span></td>
+                        </tr>
+                        <tr>
+                            <td>Joko Anwar</td>
+                            <td>0852-1122-3344</td>
+                            <td>Blind Van</td>
+                            <td>KT 5678 ZZ</td>
+                            <td><span class="badge"
+                                    style="background: rgba(239, 68, 68, 0.15); color: #ef4444;">Nonaktif / Cuti</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="footer-bottom" style="margin-top: 3rem;">
+            <p>&copy; Kirlogist 2026</p>
+            <div class="legal-links">
+                <a href="#">Kebijakan Privasi</a>
+                <a href="#">Syarat & Ketentuan</a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- =========================================
+       Modal Tambah Supir Baru
+    ========================================= -->
+    <div id="addDriverModal" class="modal-overlay">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2>Tambah Supir Baru</h2>
+                <button class="close-driver-btn icon-btn" aria-label="Tutup">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <form id="addDriverForm">
+                    <div class="input-group">
+                        <label for="namaSupir">Nama Lengkap Supir</label>
+                        <input type="text" id="namaSupir" required placeholder="Contoh: Budi Santoso">
+                    </div>
+                    <div class="input-group">
+                        <label for="kontakSupir">Nomor Handphone (WhatsApp)</label>
+                        <input type="tel" id="kontakSupir" required placeholder="Contoh: 081234567890">
+                    </div>
+                    <div class="input-group">
+                        <label for="jenisKendaraan">Jenis Kendaraan</label>
+                        <select id="jenisKendaraan" required>
+                            <option value="" disabled selected>-- Pilih Jenis Kendaraan --</option>
+                            <option value="pickup">Mobil Pick Up</option>
+                            <option value="blindvan">Blind Van</option>
+                            <option value="engkel">Truk Engkel</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="platNomor">Plat Nomor Kendaraan</label>
+                        <input type="text" id="platNomor" required placeholder="Contoh: KT 8821 XX">
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn-outline close-driver-btn">Batal</button>
+                <button type="submit" form="addDriverForm" class="btn-primary small">Simpan Data</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================================
+       Modal Profil Saya (Diperbarui)
+    ========================================= -->
+    <div id="profileModal" class="modal-overlay">
+        <!-- max-width diperkecil menjadi 380px agar lebih ringkas -->
+        <div class="modal-container" style="max-width: 380px;">
+            <div class="modal-header">
+                <h2>Profil Saya</h2>
+                <button class="close-profile-btn icon-btn" aria-label="Tutup">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <form id="profileForm">
+                    <div class="avatar-edit-container">
+                        <div class="avatar-large">L</div>
+                        <button type="button" class="btn-outline small-pill">Ubah Foto</button>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="namaUser">Nama Lengkap (Admin)</label>
+                        <!-- Nama disamakan agar konsisten -->
+                        <input type="text" id="namaUser" value="Admin Vendor">
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn-outline close-profile-btn">Batal</button>
+                <button type="submit" form="profileForm" class="btn-primary small">Simpan</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script Interaksi Modal Tambah Supir -->
+    <script src="/frontend/js/modal.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>List Pengiriman (Driver) - Kirlogist</title>
+    <link rel="stylesheet" href="/frontend/css/styles.css">
+    <link rel="stylesheet" href="/frontend/css/driver.css"> <!-- CSS Khusus Supir -->
+</head>
+<body class="driver-body">
+
+    <!-- Pembungkus Simulasi Mobile -->
+    <div class="mobile-app-wrapper loader">
+        
+        <!-- Header Sederhana Mobile -->
+        <header class="driver-header">
+            <div class="driver-brand">
+                <h1>Kirlogist</h1>
+                <span class="driver-name">Halo, Budi S.</span>
+            </div>
+            
+            <button class="mobile-menu-btn" aria-label="Buka Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </header>
+
+        <!-- Konten Utama: Daftar Tugas -->
+        <main class="task-container">
+            <div class="section-title">
+                <h2>Tugas Hari Ini</h2>
+                <p>2 Pengiriman tertunda</p>
+            </div>
+
+            <!-- Kartu Tugas 1 (Belum Diambil) -->
+            <div class="task-card">
+                <div class="task-header">
+                    <span class="badge pending">Menunggu Pengambilan</span>
+                    <span class="resi">#KRL-9921</span>
+                </div>
+                
+                <h3 class="item-name">Kulkas 2 Pintu (120 Kg)</h3>
+                
+                <div class="route-info">
+                    <div class="route-point">
+                        <span class="dot origin"></span>
+                        <p><strong>JEMPUT DI:</strong><br>Toko Elektronik Makmur, Gudang Utara</p>
+                    </div>
+                    <div class="route-line"></div>
+                    <div class="route-point">
+                        <span class="dot dest"></span>
+                        <p><strong>ANTAR KE:</strong><br>Toko Cabang Balikpapan</p>
+                    </div>
+                </div>
+
+                <!-- Tombol Dinamis (Touch Target > 48px) -->
+                <button class="action-btn btn-ambil" onclick="updateStatus(this)">
+                    Barang Diambil
+                </button>
+            </div>
+
+            <!-- Kartu Tugas 2 (Sudah Jalan) -->
+            <div class="task-card">
+                <div class="task-header">
+                    <span class="badge jalan">Dalam Perjalanan</span>
+                    <span class="resi">#KRL-9920</span>
+                </div>
+                
+                <h3 class="item-name">TV LED 50" (5 Unit)</h3>
+                
+                <div class="route-info">
+                    <div class="route-point">
+                        <span class="dot origin"></span>
+                        <p><strong>JEMPUT DI:</strong><br>Toko Elektronik Makmur, Gudang Selatan</p>
+                    </div>
+                    <div class="route-line"></div>
+                    <div class="route-point">
+                        <span class="dot dest"></span>
+                        <p><strong>ANTAR KE:</strong><br>Toko Cabang Samarinda Kota</p>
+                    </div>
+                </div>
+
+                <button class="action-btn btn-sampai" onclick="finishTask(this)">
+                    Barang Sampai
+                </button>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Script Sederhana untuk Simulasi Perubahan Tombol -->
+    <script src="/frontend/js/driver.js"></script>
+</body>
+</html>

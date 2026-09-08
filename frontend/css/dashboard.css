@@ -429,7 +429,7 @@
 .modal-container {
     background-color: var(--bg-surface);
     width: 100%;
-    max-width: 500px;
+    max-width: 420px;
     border-radius: 20px; /* Sudut membulat modern */
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
@@ -446,7 +446,7 @@
 }
 
 .modal-header {
-    padding: 1.5rem 2rem;
+    padding: 1rem 2rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     display: flex;
     justify-content: space-between;
@@ -473,7 +473,7 @@
 }
 
 .modal-body {
-    padding: 2rem;
+    padding: 0.5rem 2rem;
 }
 
 /* =========================================
@@ -492,7 +492,8 @@
 }
 
 .input-group input, 
-.input-group textarea {
+.input-group textarea,
+.input-group select {
     width: 100%;
     padding: 1rem 1.25rem;
     background-color: rgba(0,0,0,0.2);
@@ -505,18 +506,24 @@
 }
 
 .input-group textarea {
-    resize: vertical; /* User bisa menarik kolom textarea ke bawah */
+    resize: vertical; 
 }
 
 .input-group input:focus,
-.input-group textarea:focus {
+.input-group textarea:focus,
+.input-group select:focus {
     outline: none;
     border-color: var(--text-primary);
     background-color: rgba(0,0,0,0.4);
 }
 
+.input-group select option {
+    background-color: var(--bg-dark); 
+    color: var(--text-primary);
+}
+
 .modal-footer {
-    padding: 1.5rem 2rem;
+    padding: 0.5rem 2rem;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
     display: flex;
     justify-content: flex-end;

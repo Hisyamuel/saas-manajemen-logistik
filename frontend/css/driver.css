@@ -1,0 +1,212 @@
+/* =========================================
+   Gaya Dasar & Pembungkus (Simulasi Mobile)
+========================================= */
+.driver-body {
+    background-color: #0d0f12; /* Sangat gelap untuk menonjolkan area mobile */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* Memaksa ke tengah layar desktop */
+    min-height: 100vh;
+}
+
+.mobile-app-wrapper {
+    width: 100%;
+    max-width: 480px; /* Batas layar handphone */
+    background-color: var(--bg-dark);
+    min-height: 100vh;
+    box-shadow: 0 0 50px rgba(0,0,0,0.6);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+/* =========================================
+   Header Mobile
+========================================= */
+.driver-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    background-color: var(--bg-surface);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.driver-brand h1 {
+    font-size: 1.25rem;
+    margin: 0 0 0.2rem 0;
+    color: var(--text-primary);
+}
+
+.driver-name {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.mobile-menu-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 18px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.mobile-menu-btn span {
+    width: 100%;
+    height: 2px;
+    background-color: var(--text-primary);
+}
+
+/* =========================================
+   Area Konten & Kartu Tugas (Task Cards)
+========================================= */
+.task-container {
+    padding: 1.5rem;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.section-title {
+    margin-bottom: 1.5rem;
+}
+
+.section-title h2 {
+    margin: 0 0 0.2rem 0;
+    font-size: 1.3rem;
+}
+
+.section-title p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.task-card {
+    background-color: var(--bg-surface);
+    border-radius: 16px;
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.resi {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.item-name {
+    font-size: 1.1rem;
+    margin: 0 0 1.5rem 0;
+}
+
+/* Rute Visual (Disesuaikan untuk Mobile) */
+.route-info {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.route-point {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.route-point p {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--text-primary);
+}
+
+.route-point strong {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-top: 4px;
+    z-index: 2;
+    flex-shrink: 0; /* Mencegah titik mengecil */
+}
+
+.dot.origin {
+    background-color: var(--status-jalan);
+    box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.2);
+}
+
+.dot.dest {
+    background-color: var(--status-selesai);
+    box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.2);
+}
+
+.route-line {
+    position: absolute;
+    left: 5px;
+    top: 16px;
+    bottom: 30px;
+    width: 2px;
+    background-color: rgba(255, 255, 255, 0.1);
+    z-index: 1;
+}
+
+/* =========================================
+   Tombol Aksi (Dinamic Flow)
+========================================= */
+.action-btn {
+    width: 100%;
+    min-height: 54px; /* Touch target luas > 48px */
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-ambil {
+    background-color: var(--btn-primary);
+    color: #000;
+}
+
+.btn-sampai {
+    background-color: var(--status-selesai);
+    color: #fff;
+}
+
+.btn-selesai {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--text-secondary);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Badges Status */
+.badge {
+    padding: 0.35rem 0.75rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.badge.pending { background: rgba(234, 179, 8, 0.15); color: var(--status-pending); }
+.badge.jalan { background: rgba(96, 165, 250, 0.15); color: var(--status-jalan); }
+.badge.selesai { background: rgba(34, 197, 94, 0.15); color: var(--status-selesai); }

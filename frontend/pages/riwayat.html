@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Riwayat Kirim - Kirlogist</title>
+    <title>Riwayat Kirim (Shipper) - Kirlogist</title>
     <link rel="stylesheet" href="/frontend/css/styles.css">
     <link rel="stylesheet" href="/frontend/css/dashboard.css">
 </head>
@@ -151,10 +151,11 @@
     </main>
 
     <!-- =========================================
-       Modal Profil Saya
+       Modal Profil Saya (Diperbarui)
     ========================================= -->
     <div id="profileModal" class="modal-overlay">
-        <div class="modal-container" style="max-width: 450px;">
+        <!-- max-width diperkecil menjadi 380px agar lebih ringkas -->
+        <div class="modal-container" style="max-width: 380px;">
             <div class="modal-header">
                 <h2>Profil Saya</h2>
                 <button class="close-profile-btn icon-btn" aria-label="Tutup">&times;</button>
@@ -162,73 +163,27 @@
             
             <div class="modal-body">
                 <form id="profileForm">
-                    <!-- Area Edit Foto Profil -->
                     <div class="avatar-edit-container">
                         <div class="avatar-large">T</div>
                         <button type="button" class="btn-outline small-pill">Ubah Foto</button>
                     </div>
 
                     <div class="input-group">
-                        <label for="namaUser">Nama Lengkap</label>
-                        <input type="text" id="namaUser" value="Admin Toko Elektronik">
-                    </div>
-
-                    <hr class="dropdown-divider" style="margin: 1.5rem 0;">
-                    <h3 style="font-size: 1rem; margin-top: 0; margin-bottom: 1rem;">Ganti Kata Sandi</h3>
-
-                    <div class="input-group">
-                        <label for="oldPassword">Kata Sandi Saat Ini</label>
-                        <input type="password" id="oldPassword" placeholder="Masukkan sandi lama">
-                    </div>
-                    <div class="input-group">
-                        <label for="newPassword">Kata Sandi Baru</label>
-                        <input type="password" id="newPassword" placeholder="Buat sandi baru">
+                        <label for="namaUser">Nama Lengkap (Admin)</label>
+                        <!-- Nama disamakan agar konsisten -->
+                        <input type="text" id="namaUser" value="Admin Toko Makmur">
                     </div>
                 </form>
             </div>
             
             <div class="modal-footer">
                 <button type="button" class="btn-outline close-profile-btn">Batal</button>
-                <button type="submit" form="profileForm" class="btn-primary small">Simpan Perubahan</button>
+                <button type="submit" form="profileForm" class="btn-primary small">Simpan</button>
             </div>
         </div>
     </div>
 
-    <script>
-        // --- Modal Buat Permintaan ---
-        const reqModal = document.getElementById('createRequestModal');
-        const btnOpenReq = document.getElementById('btnBuatPermintaan');
-        const btnsCloseReq = document.querySelectorAll('.close-modal-btn');
-
-        if (btnOpenReq) {
-            btnOpenReq.addEventListener('click', () => reqModal.classList.add('active'));
-        }
-        btnsCloseReq.forEach(btn => btn.addEventListener('click', () => reqModal.classList.remove('active')));
-        if (reqModal) {
-            reqModal.addEventListener('click', (e) => {
-                if (e.target === reqModal) reqModal.classList.remove('active');
-            });
-        }
-
-        // --- Modal Profil Saya ---
-        const profModal = document.getElementById('profileModal');
-        // Panggil dari tombol dropdown Profil Saya
-        const btnOpenProf = document.querySelector('.dropdown-item:nth-child(3)'); 
-        const btnsCloseProf = document.querySelectorAll('.close-profile-btn');
-
-        if (btnOpenProf) {
-            btnOpenProf.addEventListener('click', (e) => {
-                e.preventDefault(); // Mencegah pindah halaman
-                profModal.classList.add('active');
-            });
-        }
-        btnsCloseProf.forEach(btn => btn.addEventListener('click', () => profModal.classList.remove('active')));
-        if (profModal) {
-            profModal.addEventListener('click', (e) => {
-                if (e.target === profModal) profModal.classList.remove('active');
-            });
-        }
-    </script>
+    <script src="/frontend/js/modal.js"></script>
 
 </body>
 </html>
