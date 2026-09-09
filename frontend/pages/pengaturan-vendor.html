@@ -4,20 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pengaturan - Kirlogist</title>
+    <title>Bursa Pengiriman (Vendor) - Kirlogist</title>
     <link rel="stylesheet" href="/frontend/css/styles.css">
-    <link rel="stylesheet" href="/frontend/css/dashboard.css">
+    <link rel="stylesheet" href="/frontend/css/dashboard.css"> 
+    <link rel="stylesheet" href="/frontend/css/vendor.css"> 
 </head>
 
 <body class="dashboard-body">
-
-    <!-- Sidebar Navigasi -->
+    <!-- Sidebar Navigasi Vendor -->
     <aside class="sidebar">
         <div class="sidebar-brand">Kirlogist</div>
         <nav class="sidebar-nav">
-            <a href="toko.html" class="nav-item">Beranda</a>
-            <a href="riwayat.html" class="nav-item">Riwayat Kirim</a>
-            <a href="pengaturan.html" class="nav-item active">Pengaturan</a>
+            <a href="vendor.html" class="nav-item active">Bursa Pengiriman</a>
+            <a href="manajemen-supir.html" class="nav-item">Manajemen Supir</a>
+            <a href="pengaturan-vendor.html" class="nav-item">Pengaturan</a>
         </nav>
         <div class="sidebar-footer">
             <a href="index.html" class="nav-item text-danger">Keluar</a>
@@ -26,21 +26,24 @@
 
     <!-- Konten Utama -->
     <main class="main-content loader">
+        <!-- Header Atas -->
         <header class="top-header">
             <div class="header-title">
-                <h1>Pengaturan Toko</h1>
+                <h1>Job Board Vendor</h1>
             </div>
-            <!-- Bagian profil diringkas demi keterbacaan, samakan dengan toko.html -->
+
             <div class="header-actions">
                 <div class="user-profile-dropdown">
                     <div class="user-profile">
-                        <span class="user-role">Toko Elektronik Makmur</span>
-                        <div class="avatar">T</div>
+                        <span class="user-role">Logistik Cepat CV</span>
+                        <div class="avatar">L</div>
                     </div>
+    
+                    <!-- Isi Dropdown -->
                     <div class="dropdown-menu">
                         <div class="dropdown-header">
-                            <strong>Admin Toko</strong>
-                            <span>admin@makmur.com</span>
+                            <strong>Admin Vendor</strong>
+                            <span>admin@logistikcepat.com</span>
                         </div>
                         <hr class="dropdown-divider">
                         <a href="#" class="dropdown-item">Profil Saya</a>
@@ -49,43 +52,34 @@
                         <a href="index.html" class="dropdown-item text-danger">Keluar</a>
                     </div>
                 </div>
+                <!-- Hamburger Menu di posisi kanan atas untuk mobile -->
+                <button class="mobile-menu-btn" aria-label="Buka Menu">
+                    <span></span><span></span><span></span>
+                </button>
             </div>
         </header>
 
-        <!-- Area Form Pengaturan -->
-        <section class="table-section" style="max-width: 800px;">
-            <div class="table-header" style="margin-bottom: 2rem;">
-                <h2>Informasi Perusahaan</h2>
-                <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.5rem;">Perbarui detail toko
-                    atau alamat default pengambilan barang Anda.</p>
-            </div>
-
+        <!-- ... (Kerangka Sidebar & Header sama seperti vendor.html) ... -->
+            
             <form class="settings-form">
                 <div class="input-group">
-                    <label>Nama Perusahaan / Toko</label>
-                    <input type="text" value="Toko Elektronik Makmur">
+                    <label>Nama Perusahaan (Vendor)</label>
+                    <input type="text" id="settingNamaVendor" value="Logistik Cepat CV">
                 </div>
-
-                <!-- Kolom baru agar konsisten dengan Modal Profil -->
-                <div class="input-group">
-                    <label>Nama Pengelola (Admin)</label>
-                    <input type="text" value="Admin Toko Makmur">
-                </div>
-
+                
                 <div class="input-group">
                     <label>Email Utama</label>
-                    <input type="email" value="admin@makmur.com">
+                    <input type="email" id="settingEmailVendor" value="admin@logistikcepat.com">
                 </div>
 
                 <div class="input-group">
-                    <label>Alamat Penjemputan Default</label>
-                    <textarea rows="3">Jl. Gatot Subroto No. 45, Ruko Indah Jaya, Kaltim</textarea>
+                    <label>Area Jangkauan Operasional</label>
+                    <textarea rows="3">Seluruh wilayah Kalimantan Timur (Samarinda, Balikpapan, Bontang, Kutai)</textarea>
                 </div>
 
                 <div class="input-group" style="display: flex; align-items: center; gap: 1rem; margin-top: 2rem;">
-                    <input type="checkbox" id="notifEmail" checked style="width: auto; margin: 0;">
-                    <label for="notifEmail" style="margin: 0; font-size: 0.95rem; color: var(--text-primary);">Kirim
-                        notifikasi email setiap status barang berubah</label>
+                    <input type="checkbox" id="notifOrder" checked style="width: auto; margin: 0;">
+                    <label for="notifOrder" style="margin: 0; font-size: 0.95rem; color: var(--text-primary);">Kirim notifikasi email saat ada pekerjaan baru di Bursa</label>
                 </div>
 
                 <!-- Bagian Keamanan (Pindahan dari Modal) -->
@@ -106,7 +100,6 @@
                     <button type="button" class="btn-primary small">Simpan Pengaturan</button>
                 </div>
             </form>
-        </section>
 
     </main>
 
@@ -120,22 +113,22 @@
                 <h2>Profil Saya</h2>
                 <button class="close-profile-btn icon-btn" aria-label="Tutup">&times;</button>
             </div>
-
+            
             <div class="modal-body">
                 <form id="profileForm">
                     <div class="avatar-edit-container">
-                        <div class="avatar-large">T</div>
+                        <div class="avatar-large">L</div>
                         <button type="button" class="btn-outline small-pill">Ubah Foto</button>
                     </div>
 
                     <div class="input-group">
                         <label for="namaUser">Nama Lengkap (Admin)</label>
                         <!-- Nama disamakan agar konsisten -->
-                        <input type="text" id="namaUser" value="Admin Toko Makmur">
+                        <input type="text" id="namaUser" value="Admin Vendor">
                     </div>
                 </form>
             </div>
-
+            
             <div class="modal-footer">
                 <button type="button" class="btn-outline close-profile-btn">Batal</button>
                 <button type="submit" form="profileForm" class="btn-primary small">Simpan</button>
@@ -143,8 +136,9 @@
         </div>
     </div>
 
+    <!-- Script Vanilla JS untuk interaksi modal khusus Vendor -->
     <script src="/frontend/js/modal.js"></script>
     <script src="/frontend/js/session.js"></script>
-</body>
 
+</body>
 </html>

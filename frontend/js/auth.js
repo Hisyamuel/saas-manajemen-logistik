@@ -4,35 +4,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- FUNGSI KEAMANAN & VALIDASI ---
 
-    // 1. Sanitasi Input (Mencegah serangan XSS dasar)
     const sanitizeInput = (str) => {
         return str.replace(/[&<>'"]/g, 
-            tag => ({
-                '&': '&amp;',
-                '<': '&lt;',
-                '>': '&gt;',
-                "'": '&#39;',
-                '"': '&quot;'
-            }[tag])
+            tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag])
         );
     };
 
-    // 2. Validasi Kekuatan Password (Minimal 8 karakter, 1 huruf besar, 1 angka, 1 simbol)
+    // Perbaikan RegEx: Menggunakan literal form agar simbol terbaca ketat
     const isPasswordStrong = (password) => {
-        const strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+        const strongRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]).{8,}$/;
         return strongRegex.test(password);
     };
 
-    // 3. Menampilkan Error UI
     const showError = (inputElement, message) => {
-        // Hapus error lama jika ada
         const oldError = inputElement.parentElement.querySelector('.error-text');
         if (oldError) oldError.remove();
 
-        inputElement.style.borderColor = '#ef4444'; // Warna merah
+        inputElement.style.borderColor = '#ff7b7b';
         const errorText = document.createElement('span');
         errorText.className = 'error-text';
-        errorText.style.color = '#ef4444';
+        errorText.style.color = '#ff7b7b';
         errorText.style.fontSize = '0.75rem';
         errorText.style.marginTop = '0.4rem';
         errorText.style.display = 'block';
@@ -42,12 +33,9 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const clearErrors = (form) => {
-        const errors = form.querySelectorAll('.error-text');
-        errors.forEach(err => err.remove());
-        const inputs = form.querySelectorAll('input');
-        inputs.forEach(input => input.style.borderColor = 'rgba(255,255,255,0.1)');
+        form.querySelectorAll('.error-text').forEach(err => err.remove());
+        form.querySelectorAll('input').forEach(input => input.style.borderColor = 'rgba(255,255,255,0.1)');
     };
-
 
     // --- HANDLER REGISTER ---
     if (registerForm) {
@@ -62,33 +50,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const name = sanitizeInput(nameInput.value.trim());
             const email = sanitizeInput(emailInput.value.trim());
-            const password = passwordInput.value; // Password tidak disanitasi agar simbol tetap utuh, backend yang akan hash
+            const password = passwordInput.value; 
             const role = roleInput.value;
 
-            // Validasi Frontend
             if (!isPasswordStrong(password)) {
-                showError(passwordInput, "Sandi minimal 8 karakter, wajib ada huruf besar, angka, dan simbol.");
+                showError(passwordInput, "Wajib minimal 8 karakter, 1 huruf besar, 1 angka, dan 1 simbol (!@#$).");
                 return;
             }
 
-            // TODO: Integrasi Fetch API ke Node.js Backend
             try {
-                // Simulasi loading
                 const btn = registerForm.querySelector('button');
-                const originalText = btn.innerText;
                 btn.innerText = "Memproses...";
                 btn.disabled = true;
-
-                console.log("Mengirim data registrasi aman:", { name, email, role });
                 
-                // Simulasi network delay
-                await new Promise(resolve => setTimeout(resolve, 1500));
+                await new Promise(resolve => setTimeout(resolve, 1000)); // Simulasi delay
 
-                alert("Registrasi berhasil! Silakan periksa email Anda untuk verifikasi.");
+                // Simulasi Database: Cek apakah email sudah ada
+                let users = JSON.parse(localStorage.getItem('krl_users')) || [];
+                if (users.find(u => u.email === email)) {
+                    showError(emailInput, "Email ini sudah terdaftar.");
+                    return;
+                }
+
+                // Simpan ke "Database"
+                users.push({ name, email, password, role });
+                localStorage.setItem('krl_users', JSON.stringify(users));
+
+                alert("Registrasi berhasil! Silakan masuk menggunakan akun baru Anda.");
                 window.location.href = "login.html";
 
             } catch (error) {
-                alert("Terjadi kesalahan sistem. Silakan coba lagi nanti.");
+                alert("Terjadi kesalahan sistem.");
             } finally {
                 const btn = registerForm.querySelector('button');
                 btn.innerText = "Daftar";
@@ -116,25 +108,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 btn.innerText = "Memverifikasi...";
                 btn.disabled = true;
 
-                // TODO: Fetch API ke endpoint Login Backend
-                // await fetch('/api/auth/login', { ... })
                 await new Promise(resolve => setTimeout(resolve, 1000));
 
-                // Simulasi respon sukses dan penyimpanan sesi lokal
-                localStorage.setItem('krl_session_token', 'simulated_jwt_token_123abc');
-                localStorage.setItem('krl_user_role', role);
+                // Simulasi Database: Cari kecocokan kredensial
+                let users = JSON.parse(localStorage.getItem('krl_users')) || [];
+                const validUser = users.find(u => u.email === email && u.password === password && u.role === role);
 
-                // Routing Dinamis Berdasarkan Role
-                if (role === 'toko') {
-                    window.location.href = "toko.html";
-                } else if (role === 'vendor') {
-                    window.location.href = "vendor.html";
-                } else if (role === 'supir') {
-                    window.location.href = "supir.html";
+                if (!validUser) {
+                    showError(emailInput, "Kredensial salah atau peran (role) tidak sesuai.");
+                    return; // Hentikan proses jika gagal
                 }
 
+                // Jika sukses, simpan sesi aktif
+                localStorage.setItem('krl_active_user', JSON.stringify({ name: validUser.name, email: validUser.email, role: validUser.role }));
+
+                // Routing Dinamis
+                if (role === 'toko') window.location.href = "toko.html";
+                else if (role === 'vendor') window.location.href = "vendor.html";
+                else if (role === 'supir') window.location.href = "driver.html";
+
             } catch (error) {
-                showError(emailInput, "Kredensial tidak valid atau akun tidak ditemukan.");
+                alert("Terjadi kesalahan koneksi.");
             } finally {
                 const btn = loginForm.querySelector('button');
                 btn.innerText = "Masuk";
