@@ -179,14 +179,14 @@
 }
 
 .image-placeholder {
-  position: relative; /* Wajib agar caption absolute tidak keluar batas */
+  position: relative; 
   width: 100%;
   min-height: 450px;
   display: flex;
   justify-content: center;
   align-items: center;
   color: var(--text-secondary);
-  font-size: 1.25rem; /* Reset ukuran font agar tidak raksasa */
+  font-size: 1.25rem; 
   background-color: rgba(255, 255, 255, 0.02);
   border-radius: 24px;
   overflow: hidden;
@@ -279,8 +279,8 @@
 
 .feature-card:hover {
   transform: translateY(-5px);
-  border-color: var(--text-primary);
-  box-shadow: 0 4px 10px var(--text-primary);
+  border: 1px solid #ffffff33;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
 .feature-icon {
@@ -355,10 +355,11 @@
   min-height: 450px;
   object-fit: cover;
   transition: filter 0.4s ease;
+  filter: brightness(40%);
 }
 
 .image-placeholder:hover img {
-  filter: brightness(0.5); 
+  filter: brightness(0.7); 
 }
 
 /* =========================================
