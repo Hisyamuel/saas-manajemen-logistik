@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Riwayat (Driver) - Kirlogist</title>
+    <link rel="stylesheet" href="/frontend/css/styles.css">
+    <link rel="stylesheet" href="/frontend/css/driver.css">
+</head>
+<body class="driver-body">
+    <div class="mobile-app-wrapper">
+        
+        <!-- Header -->
+        <header class="driver-header">
+            <div class="driver-brand">
+                <h1>Kirlogist</h1>
+                <span class="driver-name">Halo, Budi S.</span>
+            </div>
+            
+            <button class="mobile-menu-btn" aria-label="Buka Menu">
+                <span></span><span></span><span></span>
+            </button>
+
+            <!-- Navigasi Update -->
+            <nav class="driver-mobile-nav" id="driverNav">
+                <a href="driver.html" class="nav-item">Tugas Hari Ini</a>
+                <a href="riwayat-driver.html" class="nav-item active">Riwayat Pengiriman</a>
+                <a href="pengaturan-driver.html" class="nav-item">Pengaturan</a>
+                <a href="index.html" class="nav-item text-danger" style="margin-top: 1rem; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1rem;">Keluar</a>
+            </nav>
+        </header>
+
+        <!-- Konten Utama: Riwayat -->
+        <main class="task-container loader">
+            <div class="section-title">
+                <h2>Riwayat Pengiriman</h2><br>
+                <p>Barang yang telah diantar</p>
+            </div>
+
+            <!-- Fitur Pencarian -->
+            <div class="search-bar-mobile">
+                <input type="text" placeholder="Cari No. Resi...">
+                <button class="action-btn btn-selesai" style="width: auto; min-height: 45px; padding: 0 1rem; border-radius: 12px;">Cari</button>
+            </div>
+
+            <!-- Kartu Riwayat 1 -->
+            <div class="task-card" style="opacity: 0.8;"> <!-- Opacity diturunkan sedikit untuk kesan "sudah berlalu" -->
+                <div class="task-header">
+                    <span class="badge selesai">Selesai</span>
+                    <span class="resi">#KRL-9915</span>
+                </div>
+                
+                <h3 class="item-name" style="margin-bottom: 0.5rem;">Mesin Cuci Front Load</h3>
+                <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 0; margin-bottom: 1.5rem;">Diantar: 01 Sep 2026</p>
+                
+                <div class="route-info" style="margin-bottom: 0;">
+                    <div class="route-point">
+                        <span class="dot origin" style="background-color: var(--status-selesai); box-shadow: none;"></span>
+                        <p><strong>DARI:</strong><br>Toko Elektronik Makmur</p>
+                    </div>
+                    <div class="route-line" style="bottom: 20px;"></div>
+                    <div class="route-point">
+                        <span class="dot dest"></span>
+                        <p><strong>KE:</strong><br>Perumahan Elite, Samarinda</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="/frontend/js/driver.js"></script>
+    <script src="/frontend/js/session.js"></script>
+</body>
+</html>

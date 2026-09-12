@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Pengaturan (Driver) - Kirlogist</title>
+    <link rel="stylesheet" href="/frontend/css/styles.css">
+    <link rel="stylesheet" href="/frontend/css/driver.css">
+</head>
+<body class="driver-body">
+    <div class="mobile-app-wrapper">
+        
+        <!-- Header -->
+        <header class="driver-header">
+            <div class="driver-brand">
+                <h1>Kirlogist</h1>
+                <span class="driver-name">Halo, Budi S.</span>
+            </div>
+            
+            <button class="mobile-menu-btn" aria-label="Buka Menu">
+                <span></span><span></span><span></span>
+            </button>
+
+            <!-- Navigasi Update -->
+            <nav class="driver-mobile-nav" id="driverNav">
+                <a href="driver.html" class="nav-item">Tugas Hari Ini</a>
+                <a href="riwayat-driver.html" class="nav-item">Riwayat Pengiriman</a>
+                <a href="pengaturan-driver.html" class="nav-item active">Pengaturan Driver</a>
+                <a href="index.html" class="nav-item text-danger" style="margin-top: 1rem; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1rem;">Keluar</a>
+            </nav>
+        </header>
+
+        <!-- Konten Utama: Pengaturan -->
+        <main class="task-container loader">
+            <div class="section-title">
+                <h2>Profil & Akun</h2>
+                <p>Kelola data armada Anda</p>
+            </div>
+
+            <form style="margin-top: 2rem;">
+                <!-- Identitas -->
+                <div class="input-group">
+                    <label for="settingNamaSupir">Nama Lengkap</label>
+                    <input type="text" value="Budi Santoso" id="settingNamaSupir">
+                </div>
+                <div class="input-group">
+                    <label>Nomor HP (WhatsApp)</label>
+                    <input type="tel" value="0812-3456-7890">
+                </div>
+
+                <!-- Kendaraan -->
+                <h3 style="font-size: 1rem; margin-top: 2rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.05);">Data Kendaraan</h3>
+                <div class="input-group">
+                    <label>Jenis Kendaraan</label>
+                    <select>
+                        <option value="engkel" selected>Truk Engkel Bak</option>
+                        <option value="pickup">Mobil Pick Up</option>
+                        <option value="blindvan">Blind Van</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Plat Nomor</label>
+                    <input type="text" value="KT 8821 XX">
+                </div>
+
+                <!-- Bagian Keamanan (Pindahan dari Modal) -->
+                <h3
+                    style="margin-top: 3rem; margin-bottom: 1.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 1.1rem;">
+                    Keamanan Akun</h3>
+
+                <div class="input-group">
+                    <label for="oldPassword">Kata Sandi Saat Ini</label>
+                    <input type="password" id="oldPassword" placeholder="Masukkan sandi lama">
+                </div>
+                <div class="input-group">
+                    <label for="newPassword">Kata Sandi Baru</label>
+                    <input type="password" id="newPassword" placeholder="Buat sandi baru">
+                </div>
+
+                <button type="button" class="action-btn btn-ambil" style="margin-top: 2rem;">Simpan Perubahan</button>
+            </form>
+        </main>
+    </div>
+
+    <script src="/frontend/js/driver.js"></script>
+    <script src="/frontend/js/session.js"></script>
+</body>
+</html>

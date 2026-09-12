@@ -2,20 +2,23 @@
    Gaya Dasar & Pembungkus (Simulasi Mobile)
 ========================================= */
 .driver-body {
-    background-color: #0d0f12; /* Sangat gelap untuk menonjolkan area mobile */
+    background-color: #0d0f12;
+    /* Sangat gelap untuk menonjolkan area mobile */
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: center; /* Memaksa ke tengah layar desktop */
+    justify-content: center;
+    /* Memaksa ke tengah layar desktop */
     min-height: 100vh;
 }
 
 .mobile-app-wrapper {
     width: 100%;
-    max-width: 480px; /* Batas layar handphone */
+    max-width: 480px;
+    /* Batas layar handphone */
     background-color: var(--bg-dark);
     min-height: 100vh;
-    box-shadow: 0 0 50px rgba(0,0,0,0.6);
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.6);
     position: relative;
     display: flex;
     flex-direction: column;
@@ -47,22 +50,101 @@
     color: var(--text-secondary);
 }
 
+/* =========================================
+   Hamburger Menu & Animasi "X" (Driver)
+========================================= */
 .mobile-menu-btn {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 24px;
-    height: 18px;
+    width: 26px;
+    height: 20px;
     background: transparent;
     border: none;
     cursor: pointer;
     padding: 0;
+    z-index: 11; 
 }
 
 .mobile-menu-btn span {
     width: 100%;
-    height: 2px;
+    height: 2.5px;
     background-color: var(--text-primary);
+    border-radius: 4px;
+    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1); 
+}
+
+/* Animasi saat tombol ditekan (class .active) */
+.mobile-menu-btn.active span:nth-child(1) {
+    transform: translateY(8.5px) rotate(45deg);
+}
+
+.mobile-menu-btn.active span:nth-child(2) {
+    opacity: 0;
+    transform: scale(0);
+}
+
+.mobile-menu-btn.active span:nth-child(3) {
+    transform: translateY(-8.5px) rotate(-45deg);
+}
+
+/* =========================================
+   Menu Navigasi Mobile Dropdown Kotak (Driver)
+========================================= */
+.driver-mobile-nav {
+    position: absolute;
+    top: calc(100% - 10px); 
+    right: 1.5rem;
+    left: auto;
+    width: 220px; 
+    background-color: var(--bg-surface);
+    padding: 0.5rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+    
+    /* Animasi muncul yang mulus */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-15px) scale(0.95);
+    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+    transform-origin: top right; 
+}
+
+.driver-mobile-nav.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+.driver-mobile-nav .nav-item {
+    padding: 1rem 0.5rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.driver-mobile-nav .nav-item:not(:last-child) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.driver-mobile-nav .nav-item.active,
+.driver-mobile-nav .nav-item:hover {
+    color: var(--text-primary);
+}
+
+.driver-mobile-nav .text-danger:hover {
+    color: rgb(255, 70, 70);
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 /* =========================================
@@ -146,7 +228,8 @@
     border-radius: 50%;
     margin-top: 4px;
     z-index: 2;
-    flex-shrink: 0; /* Mencegah titik mengecil */
+    flex-shrink: 0;
+    /* Mencegah titik mengecil */
 }
 
 .dot.origin {
@@ -174,7 +257,8 @@
 ========================================= */
 .action-btn {
     width: 100%;
-    min-height: 54px; /* Touch target luas > 48px */
+    min-height: 54px;
+    /* Touch target luas > 48px */
     border-radius: 50px;
     font-size: 1rem;
     font-weight: 700;
@@ -207,6 +291,69 @@
     font-weight: 600;
 }
 
-.badge.pending { background: rgba(234, 179, 8, 0.15); color: var(--status-pending); }
-.badge.jalan { background: rgba(96, 165, 250, 0.15); color: var(--status-jalan); }
-.badge.selesai { background: rgba(34, 197, 94, 0.15); color: var(--status-selesai); }
+.badge.pending {
+    background: rgba(234, 179, 8, 0.15);
+    color: var(--status-pending);
+}
+
+.badge.jalan {
+    background: rgba(96, 165, 250, 0.15);
+    color: var(--status-jalan);
+}
+
+.badge.selesai {
+    background: rgba(34, 197, 94, 0.15);
+    color: var(--status-selesai);
+}
+
+/* =========================================
+   Form & Input (Mobile Driver)
+========================================= */
+.input-group {
+    margin-bottom: 1.25rem;
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.input-group input,
+.input-group select {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    background-color: rgba(0,0,0,0.2);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--text-primary);
+    border-radius: 12px;
+    box-sizing: border-box;
+    font-family: inherit;
+    transition: all 0.3s ease;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    outline: none;
+    border-color: var(--text-primary);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.input-group select option {
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+}
+
+.search-bar-mobile {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.search-bar-mobile input {
+    padding: 10px;
+    flex: 1;
+    border-radius: 8px;
+}

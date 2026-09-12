@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>List Pengiriman (Driver) - Kirlogist</title>
     <link rel="stylesheet" href="/frontend/css/styles.css">
-    <link rel="stylesheet" href="/frontend/css/driver.css"> <!-- CSS Khusus Supir -->
+    <link rel="stylesheet" href="/frontend/css/driver.css"> 
 </head>
 <body class="driver-body">
 
     <!-- Pembungkus Simulasi Mobile -->
-    <div class="mobile-app-wrapper loader">
+    <div class="mobile-app-wrapper">
         
         <!-- Header Sederhana Mobile -->
         <header class="driver-header">
@@ -22,10 +22,19 @@
             <button class="mobile-menu-btn" aria-label="Buka Menu">
                 <span></span><span></span><span></span>
             </button>
+
+            <!-- Menu dipindahkan ke luar tombol, tapi tetap di dalam header -->
+            <nav class="driver-mobile-nav" id="driverNav">
+                <a href="driver.html" class="nav-item active">Tugas Hari Ini</a>
+                <a href="riwayat-driver.html" class="nav-item">Riwayat Pengiriman</a>
+                <a href="toko.html" class="nav-item">Ganti Akun</a>
+                <a href="pengaturan-driver.html" class="nav-item">Pengaturan</a>
+                <a href="index.html" class="nav-item text-danger" style="margin-top: 1rem; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1rem;">Keluar</a>
+            </nav>
         </header>
 
         <!-- Konten Utama: Daftar Tugas -->
-        <main class="task-container">
+        <main class="task-container loader">
             <div class="section-title">
                 <h2>Tugas Hari Ini</h2>
                 <p>2 Pengiriman tertunda</p>

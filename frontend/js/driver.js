@@ -1,3 +1,18 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const menuBtn = document.querySelector('.mobile-menu-btn');
+    const driverNav = document.getElementById('driverNav');
+
+    if (menuBtn && driverNav) {
+        menuBtn.addEventListener('click', () => {
+            // Toggle kelas 'active' pada tombol (untuk animasi X)
+            menuBtn.classList.toggle('active');
+            
+            // Toggle kelas 'active' pada menu (untuk memunculkan kotak dropdown)
+            driverNav.classList.toggle('active');
+        });
+    }
+});
+
 // Simulasi flow: Tombol ditekan berubah warna dan teks
 function updateStatus(button) {
     button.className = "action-btn btn-sampai";

@@ -293,6 +293,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 12px;
+  text-align: center;
 }
 
 .feature-title {
