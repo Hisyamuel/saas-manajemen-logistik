@@ -1,0 +1,29 @@
+{
+  "name": "saas-manajemen-logistik",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node backend/src/server.js",
+    "dev": "node --watch backend/src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hisyamuel/saas-manajemen-logistik.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hisyamuel/saas-manajemen-logistik/issues"
+  },
+  "homepage": "https://github.com/Hisyamuel/saas-manajemen-logistik#readme",
+  "dependencies": {
+    "@hapi/hapi": "^21.4.10",
+    "@supabase/supabase-js": "^2.116.0",
+    "bcrypt": "^6.0.0",
+    "dotenv": "^17.4.2",
+    "jsonwebtoken": "^9.0.3"
+  }
+}

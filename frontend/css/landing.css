@@ -6,6 +6,33 @@
   scroll-behavior: smooth;
 }
 
+/* =========================================
+   Animasi Scroll Reveal (Fade In Up)
+========================================= */
+.reveal {
+  opacity: 0;
+  visibility: hidden;
+  /* Mencegah elemen berkedip sebelum JS berjalan */
+}
+
+.reveal.active {
+  visibility: visible;
+  /* Menggunakan forwards agar elemen tetap di posisi 100% setelah animasi selesai */
+  animation: customFadeInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes customFadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .navbar {
   position: fixed;
   top: 0;
@@ -18,7 +45,7 @@
   box-sizing: border-box;
   z-index: 100;
   background: rgba(18, 18, 18, 0.7);
-  backdrop-filter: blur(12px); 
+  backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
@@ -39,6 +66,7 @@
   color: var(--text-secondary);
   text-decoration: none;
   font-weight: 500;
+  margin-top: 0;
   transition: color 0.3s ease;
 }
 
@@ -62,7 +90,7 @@
    Hamburger Menu (Top Right Mobile)
 ========================================= */
 .hamburger-menu-top-right {
-  display: none; 
+  display: none;
   flex-direction: column;
   justify-content: space-between;
   width: 24px;
@@ -98,25 +126,29 @@
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: 1280px; /* Diperlebar agar terasa lega seperti Framer */
+  max-width: 1280px;
+  /* Diperlebar agar terasa lega seperti Framer */
   display: flex;
   flex-direction: row;
-  align-items: center; 
-  justify-content: space-between; 
-  gap: 4rem; 
-  margin-top: 5rem; /* Memberi jarak dari navbar */
+  align-items: center;
+  justify-content: space-between;
+  gap: 4rem;
+  margin-top: 5rem;
+  /* Memberi jarak dari navbar */
 }
 
 /* Kolom Kiri */
 .hero-text-area {
-  flex: 1; 
+  flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Memastikan semua rata kiri */
+  align-items: flex-start;
+  /* Memastikan semua rata kiri */
 }
 
 .hero-title {
-  font-size: 4.8rem; /* Dibuat sedikit lebih masif */
+  font-size: 4.8rem;
+  /* Dibuat sedikit lebih masif */
   font-weight: 800;
   line-height: 1.05;
   margin-bottom: 1.5rem;
@@ -129,33 +161,38 @@
   color: var(--text-secondary);
   line-height: 1.6;
   max-width: 550px;
-  margin: 0; 
+  margin: 0;
 }
 
 /* Garis Pemisah (Divider) Elegan */
 .hero-divider {
   width: 100%;
   border: none;
-  border-top: 1px solid rgb(255, 255, 255); /* Tipis dan transparan */
-  margin: 2.5rem 0; /* Jarak atas-bawah */
+  border-top: 1px solid rgb(255, 255, 255);
+  /* Tipis dan transparan */
+  margin: 2.5rem 0;
+  /* Jarak atas-bawah */
 }
 
 /* Tombol ala AgenticX (Kapsul) */
 .btn-primary {
+  margin-top: 0.5rem;
   display: inline-block;
   background-color: var(--btn-primary);
   color: #000;
   padding: 1.1rem 2.5rem;
   text-decoration: none;
   font-weight: 600;
-  border-radius: 50px; /* Diubah menjadi kapsul membulat penuh */
+  border-radius: 50px;
+  /* Diubah menjadi kapsul membulat penuh */
   font-size: 1.1rem;
   transition: transform 0.2s ease, background-color 0.3s ease;
 }
 
 .btn-primary:hover {
   background-color: var(--btn-primary-hover);
-  transform: translateY(-2px); 
+  transform: translateY(-2px);
+  text-decoration: none;
 }
 
 /* Kolom Kanan (Area Gambar) */
@@ -168,25 +205,58 @@
   cursor: pointer;
 }
 
-/* Placeholder visual (Bisa dihapus nanti kalau gambar aslinya sudah ada) */
 .image-placeholder {
+  position: relative;
   width: 100%;
   min-height: 450px;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px dashed rgba(255, 255, 255, 0.1);
-  border-radius: 24px;
   display: flex;
   justify-content: center;
   align-items: center;
   color: var(--text-secondary);
-  font-size: 0.9rem;
-  letter-spacing: 0.05em;
+  font-size: 1.25rem;
+  background-color: rgba(255, 255, 255, 0.02);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.image-placeholder .dashboard,
+.image-placeholder .job-board {
+  width: 100%;
+  height: 100%;
+  min-height: 450px;
+  border-radius: 24px;
+  object-fit: cover;
+}
+
+.caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 40px 20px 20px 20px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.119)s, transparent);
+  color: #ffffff;
+  font-size: 3rem;
+  font-weight: 600;
+  z-index: 2;
+  transform: translateY(15px);
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+
+.image-placeholder:hover .caption {
+  transform: translateY(0);
+  opacity: 1;
 }
 
 /* =========================================
    Global Section Styles
 ========================================= */
-.features-section, .capabilities-section {
+.features-section,
+.capabilities-section {
   padding: 8rem 5%;
   max-width: 1280px;
   margin: 0 auto;
@@ -230,12 +300,14 @@
   padding: 2.5rem;
   border-radius: 16px;
   border: 1px solid rgba(255, 255, 255, 0.03);
+  box-shadow: #000 0px 0.5px 5px;
   transition: transform 0.3s ease;
 }
 
 .feature-card:hover {
   transform: translateY(-5px);
-  border-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid #ffffff33;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .feature-icon {
@@ -248,6 +320,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 12px;
+  text-align: center;
 }
 
 .feature-title {
@@ -294,6 +367,74 @@
   min-height: 400px;
 }
 
+.image-placeholder {
+  transition: transform 0.3s ease;
+}
+
+.image-placeholder:hover {
+  transform: translateY(-8px);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+}
+
+.image-placeholder img {
+  width: 100%;
+  height: 100%;
+  min-height: 450px;
+  object-fit: cover;
+  transition: filter 0.4s ease;
+  filter: brightness(40%);
+}
+
+.image-placeholder:hover img {
+  filter: brightness(0.7);
+}
+
+/* =========================================
+   CTA Bottom Section
+========================================= */
+.cta-bottom-section {
+  padding: 6rem 5%;
+  max-width: 1120px;
+  margin: 2rem auto 6rem auto;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 24px;
+  box-shadow: #000 0px 0.5px 5px;
+  text-align: center;
+  transition: border-color 0.3s ease;
+}
+
+.cta-bottom-section:hover {
+  border-color: var(--text-primary);
+  box-shadow: 0 4px 10px var(--text-primary);
+}
+
+.cta-content {
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.cta-content h2 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  letter-spacing: -0.03em;
+}
+
+.cta-content p {
+  color: var(--text-secondary);
+  font-size: 1.15rem;
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .cta-content h2 {
+    font-size: 2rem;
+  }
+}
+
 /* =========================================
    Footer 
 ========================================= */
@@ -301,7 +442,8 @@
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding: 5rem 5% 2rem;
   margin-top: 4rem;
-  background-color: #1a1c20; /* Sedikit lebih gelap dari bg utama */
+  background-color: #1a1c20;
+  /* Sedikit lebih gelap dari bg utama */
 }
 
 .footer-top {
@@ -367,26 +509,38 @@
   color: var(--text-secondary);
   text-decoration: none;
   margin-left: 1.5rem;
+  transition: color 0.3s ease;
+}
+
+.legal-links a:hover {
+  color: var(--text-primary);
 }
 
 /* Responsif Tambahan untuk Tablet/Mobile */
 @media (max-width: 768px) {
-  .section-title { font-size: 2.5rem; }
-  
+  .section-title {
+    font-size: 2.5rem;
+  }
+
   .cap-header {
     flex-direction: column;
     align-items: flex-start;
     gap: 1.5rem;
   }
-  
-  .cap-header .right-align { text-align: left; }
-  .cap-visual-grid { grid-template-columns: 1fr; }
-  
+
+  .cap-header .right-align {
+    text-align: left;
+  }
+
+  .cap-visual-grid {
+    grid-template-columns: 1fr;
+  }
+
   .footer-links-group {
     flex-direction: column;
     gap: 2rem;
   }
-  
+
   .footer-bottom {
     flex-direction: column;
     gap: 1rem;
@@ -399,11 +553,11 @@
 ========================================= */
 @media (max-width: 992px) {
   .hero-content {
-    flex-direction: column; 
+    flex-direction: column;
     align-items: flex-start;
     gap: 3rem;
   }
-  
+
   .hero-title {
     font-size: 3rem;
   }
@@ -411,7 +565,7 @@
   .hero-image-area {
     width: 100%;
   }
-  
+
   .image-placeholder {
     min-height: 300px;
   }

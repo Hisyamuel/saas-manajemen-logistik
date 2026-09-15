@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riwayat Kirim (Shipper) - Kirlogist</title>
+    <link rel="stylesheet" href="/frontend/css/styles.css">
+    <link rel="stylesheet" href="/frontend/css/dashboard.css">
+</head>
+
+<body class="dashboard-body">
+
+    <!-- Sidebar Navigasi (Kiri) -->
+    <aside class="sidebar">
+        <div class="sidebar-brand">Kirlogist</div>
+        <nav class="sidebar-nav">
+            <!-- Nav-item active dipindah ke Riwayat Kirim -->
+            <a href="toko.html" class="nav-item">Beranda</a>
+            <a href="riwayat.html" class="nav-item active">Riwayat Kirim</a>
+            <a href="pengaturan.html" class="nav-item">Pengaturan</a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="index.html" class="nav-item text-danger">Keluar</a>
+        </div>
+    </aside>
+
+    <!-- Konten Utama (Kanan) -->
+    <main class="main-content loader">
+
+        <!-- Header Atas (Sama seperti dashboard) -->
+        <header class="top-header">
+            <div class="header-title">
+                <h1>Riwayat Pengiriman</h1>
+            </div>
+
+            <div class="header-actions">
+                <div class="user-profile-dropdown">
+                    <div class="user-profile">
+                        <span class="user-role">Toko Elektronik Makmur</span>
+                        <div class="avatar">T</div>
+                    </div>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-header">
+                            <strong>Admin Toko</strong>
+                            <span>admin@makmur.com</span>
+                        </div>
+                        <hr class="dropdown-divider">
+                        <a href="#" class="dropdown-item">Profil Saya</a>
+                        <a href="vendor.html" class="dropdown-item">Ganti Akun</a>
+                        <hr class="dropdown-divider">
+                        <a href="index.html" class="dropdown-item text-danger">Keluar</a>
+                    </div>
+                </div>
+                <button class="mobile-menu-btn" aria-label="Buka Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Area Tabel Riwayat Penuh -->
+        <section class="table-section full-page">
+            
+            <!-- Baris Filter & Pencarian -->
+            <div class="filter-bar">
+                <div class="input-group search-bar">
+                    <input type="text" placeholder="Cari ID Resi, Nama Barang, atau Tujuan...">
+                </div>
+                
+                <div class="input-group filter-select">
+                    <select>
+                        <option value="">Semua Status</option>
+                        <option value="pending">Mencari Vendor</option>
+                        <option value="jalan">Dalam Perjalanan</option>
+                        <option value="selesai">Selesai</option>
+                    </select>
+                </div>
+                
+                <button class="btn-outline filter-btn">Terapkan</button>
+            </div>
+
+            <!-- Tabel Data -->
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Tanggal</th>
+                            <th>ID Resi</th>
+                            <th>Nama Barang</th>
+                            <th>Tujuan</th>
+                            <th>Status</th>
+                            <th>Vendor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>07 Sep 2026</td>
+                            <td>#KRL-9922</td>
+                            <td>AC Split 1 PK (2 Unit)</td>
+                            <td>Gudang Utara</td>
+                            <td><span class="badge pending">Mencari Vendor</span></td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>06 Sep 2026</td>
+                            <td>#KRL-9921</td>
+                            <td>Kulkas 2 Pintu</td>
+                            <td>Gudang Selatan</td>
+                            <td><span class="badge jalan">Dalam Perjalanan</span></td>
+                            <td>Logistik Cepat CV</td>
+                        </tr>
+                        <tr>
+                            <td>05 Sep 2026</td>
+                            <td>#KRL-9920</td>
+                            <td>TV LED 50" (5 Unit)</td>
+                            <td>Toko Cabang Barat</td>
+                            <td><span class="badge selesai" style="background: rgba(34, 197, 94, 0.15); color: var(--status-selesai);">Selesai</span></td>
+                            <td>Transporter Jaya</td>
+                        </tr>
+                        <tr>
+                            <td>01 Sep 2026</td>
+                            <td>#KRL-9915</td>
+                            <td>Mesin Cuci Front Load</td>
+                            <td>Perumahan Elite</td>
+                            <td><span class="badge selesai" style="background: rgba(34, 197, 94, 0.15); color: var(--status-selesai);">Selesai</span></td>
+                            <td>KirimAman Corp</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Paginasi -->
+            <div class="pagination">
+                <button class="page-btn" disabled>&laquo;</button>
+                <button class="page-btn active">1</button>
+                <button class="page-btn">2</button>
+                <button class="page-btn">3</button>
+                <button class="page-btn">&raquo;</button>
+            </div>
+
+        </section>
+
+        <section class="footer-bottom" style="margin-top: 2rem;">
+            <p>&copy; Kirlogist 2026</p>
+            <div class="legal-links">
+                <a href="#">Kebijakan Privasi</a>
+                <a href="#">Syarat & Ketentuan</a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- =========================================
+       Modal Profil Saya (Diperbarui)
+    ========================================= -->
+    <div id="profileModal" class="modal-overlay">
+        <!-- max-width diperkecil menjadi 380px agar lebih ringkas -->
+        <div class="modal-container" style="max-width: 380px;">
+            <div class="modal-header">
+                <h2>Profil Saya</h2>
+                <button class="close-profile-btn icon-btn" aria-label="Tutup">&times;</button>
+            </div>
+            
+            <div class="modal-body">
+                <form id="profileForm">
+                    <div class="avatar-edit-container">
+                        <div class="avatar-large">T</div>
+                        <button type="button" class="btn-outline small-pill">Ubah Foto</button>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="namaUser">Nama Lengkap (Admin)</label>
+                        <!-- Nama disamakan agar konsisten -->
+                        <input type="text" id="namaUser" value="Admin Toko Makmur">
+                    </div>
+                </form>
+            </div>
+            
+            <div class="modal-footer">
+                <button type="button" class="btn-outline close-profile-btn">Batal</button>
+                <button type="submit" form="profileForm" class="btn-primary small">Simpan</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/frontend/js/modal.js"></script>
+    <script src="/frontend/js/session.js"></script>
+</body>
+</html>
