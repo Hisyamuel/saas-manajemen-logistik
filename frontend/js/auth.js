@@ -2,15 +2,32 @@ document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('loginForm');
     const registerForm = document.getElementById('registerForm');
 
-    // --- FUNGSI KEAMANAN & VALIDASI ---
+    // URL API Backend (Sesuaikan dengan port server Hapi.js)
+    const API_URL = 'http://localhost:5000/api/auth';
 
+    // Fungsi Toast Global
+    const showToast = (message) => {
+        const toast = document.createElement('div');
+        toast.className = 'toast-notification';
+        toast.innerText = message;
+        document.body.appendChild(toast);
+
+        setTimeout(() => toast.classList.add('show'), 10); // Animasi masuk
+        setTimeout(() => {
+            toast.classList.remove('show'); // Animasi keluar
+            setTimeout(() => toast.remove(), 400); // Hapus dari DOM
+        }, 3000);
+    };
+
+// PENGGUNAAN: Ganti semua alert("...") di auth.js dengan showToast("...")
+
+    // --- FUNGSI KEAMANAN & VALIDASI ---
     const sanitizeInput = (str) => {
         return str.replace(/[&<>'"]/g, 
             tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag])
         );
     };
 
-    // Perbaikan RegEx: Menggunakan literal form agar simbol terbaca ketat
     const isPasswordStrong = (password) => {
         const strongRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]).{8,}$/;
         return strongRegex.test(password);
@@ -62,25 +79,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 const btn = registerForm.querySelector('button');
                 btn.innerText = "Memproses...";
                 btn.disabled = true;
-                
-                await new Promise(resolve => setTimeout(resolve, 1000)); // Simulasi delay
 
-                // Simulasi Database: Cek apakah email sudah ada
-                let users = JSON.parse(localStorage.getItem('krl_users')) || [];
-                if (users.find(u => u.email === email)) {
-                    showError(emailInput, "Email ini sudah terdaftar.");
+                // Mengirim Request POST ke API Register Backend
+                const response = await fetch(`${API_URL}/register`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email, password, role })
+                });
+
+                const result = await response.json();
+
+                if (!response.ok) {
+                    showError(emailInput, result.message || "Gagal mendaftar, silakan periksa kembali data Anda.");
                     return;
                 }
 
-                // Simpan ke "Database"
-                users.push({ name, email, password, role });
-                localStorage.setItem('krl_users', JSON.stringify(users));
-
-                alert("Registrasi berhasil! Silakan masuk menggunakan akun baru Anda.");
+                showToast("Registrasi berhasil! Silakan masuk menggunakan akun baru Anda.");
                 window.location.href = "login.html";
 
             } catch (error) {
-                alert("Terjadi kesalahan sistem.");
+                console.error("Fetch error:", error);
+                showToast("Terjadi kesalahan koneksi ke server. Pastikan server backend menyala.");
             } finally {
                 const btn = registerForm.querySelector('button');
                 btn.innerText = "Daftar";
@@ -108,19 +127,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 btn.innerText = "Memverifikasi...";
                 btn.disabled = true;
 
-                await new Promise(resolve => setTimeout(resolve, 1000));
+                // Mengirim Request POST ke API Login Backend
+                const response = await fetch(`${API_URL}/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password, role })
+                });
 
-                // Simulasi Database: Cari kecocokan kredensial
-                let users = JSON.parse(localStorage.getItem('krl_users')) || [];
-                const validUser = users.find(u => u.email === email && u.password === password && u.role === role);
+                const result = await response.json();
 
-                if (!validUser) {
-                    showError(emailInput, "Kredensial salah atau peran (role) tidak sesuai.");
-                    return; // Hentikan proses jika gagal
+                if (!response.ok) {
+                    showError(emailInput, result.message || "Kredensial tidak valid.");
+                    return;
                 }
 
-                // Jika sukses, simpan sesi aktif
-                localStorage.setItem('krl_active_user', JSON.stringify({ name: validUser.name, email: validUser.email, role: validUser.role }));
+                // Jika sukses, simpan JWT Token dan data User ke localStorage
+                localStorage.setItem('krl_token', result.token);
+                localStorage.setItem('krl_active_user', JSON.stringify(result.user));
 
                 // Routing Dinamis
                 if (role === 'toko') window.location.href = "toko.html";
@@ -128,7 +151,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 else if (role === 'supir') window.location.href = "driver.html";
 
             } catch (error) {
-                alert("Terjadi kesalahan koneksi.");
+                console.error("Fetch error:", error);
+                showToast("Terjadi kesalahan koneksi ke server.");
             } finally {
                 const btn = loginForm.querySelector('button');
                 btn.innerText = "Masuk";

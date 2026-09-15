@@ -6,6 +6,33 @@
   scroll-behavior: smooth;
 }
 
+/* =========================================
+   Animasi Scroll Reveal (Fade In Up)
+========================================= */
+.reveal {
+  opacity: 0;
+  visibility: hidden;
+  /* Mencegah elemen berkedip sebelum JS berjalan */
+}
+
+.reveal.active {
+  visibility: visible;
+  /* Menggunakan forwards agar elemen tetap di posisi 100% setelah animasi selesai */
+  animation: customFadeInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes customFadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .navbar {
   position: fixed;
   top: 0;
@@ -179,18 +206,18 @@
 }
 
 .image-placeholder {
-  position: relative; 
+  position: relative;
   width: 100%;
   min-height: 450px;
   display: flex;
   justify-content: center;
   align-items: center;
   color: var(--text-secondary);
-  font-size: 1.25rem; 
+  font-size: 1.25rem;
   background-color: rgba(255, 255, 255, 0.02);
   border-radius: 24px;
   overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.05);
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
@@ -209,12 +236,12 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  padding: 40px 20px 20px 20px; 
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.119)s, transparent); 
+  padding: 40px 20px 20px 20px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.119)s, transparent);
   color: #ffffff;
   font-size: 3rem;
   font-weight: 600;
-  z-index: 2; 
+  z-index: 2;
   transform: translateY(15px);
   opacity: 0.8;
   transition: all 0.3s ease;
@@ -222,7 +249,7 @@
 
 .image-placeholder:hover .caption {
   transform: translateY(0);
-  opacity: 1; 
+  opacity: 1;
 }
 
 /* =========================================
@@ -280,7 +307,7 @@
 .feature-card:hover {
   transform: translateY(-5px);
   border: 1px solid #ffffff33;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .feature-icon {
@@ -345,7 +372,7 @@
 }
 
 .image-placeholder:hover {
-  transform: translateY(-8px); 
+  transform: translateY(-8px);
   border-color: rgba(255, 255, 255, 0.2);
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
 }
@@ -360,7 +387,7 @@
 }
 
 .image-placeholder:hover img {
-  filter: brightness(0.7); 
+  filter: brightness(0.7);
 }
 
 /* =========================================

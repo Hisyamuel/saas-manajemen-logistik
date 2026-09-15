@@ -32,3 +32,27 @@ body {
   padding: 0;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+/* =========================================
+   Custom Toast Notification
+========================================= */
+.toast-notification {
+    position: fixed;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg-surface);
+    color: var(--text-primary);
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.1);
+    z-index: 9999;
+    transition: top 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: 500;
+    pointer-events: none;
+}
+
+.toast-notification.show {
+    top: 20px;
+}
