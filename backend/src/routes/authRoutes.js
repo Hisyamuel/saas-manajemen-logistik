@@ -1,15 +1,22 @@
-const authController = require('../controllers/authController');
+const { register, login, updateProfil } = require('../controllers/authController');
+const { verifyToken } = require('../middlewares/authMiddleware');
 
 const authRoutes = [
     {
         method: 'POST',
         path: '/api/auth/register',
-        handler: authController.register
+        handler: register
     },
     {
         method: 'POST',
         path: '/api/auth/login',
-        handler: authController.login
+        handler: login
+    },
+    {
+        method: 'PUT',
+        path: '/api/auth/profil',
+        options: { pre: [{ method: verifyToken, assign: 'user' }] },
+        handler: updateProfil
     }
 ];
 

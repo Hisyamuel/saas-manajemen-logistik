@@ -1,23 +1,30 @@
 :root {
   /* Palet Warna Utama Diperbarui */
-  --bg-dark: #22252a;      /* Abu-abu gelap (bukan hitam pekat) */
-  --bg-surface: #2c3036;   /* Sedikit lebih terang untuk kartu/modal */
+  --bg-dark: #22252a;
+  /* Abu-abu gelap (bukan hitam pekat) */
+  --bg-surface: #2c3036;
+  /* Sedikit lebih terang untuk kartu/modal */
   --text-primary: #ffffff;
   --text-secondary: #a0a0a0;
-  
+
   /* Warna Primer & Status */
-  --btn-primary: #d4d1d1;  
+  --btn-primary: #d4d1d1;
   --btn-primary-hover: #ffffff;
-  
-  --status-pending: #eab308; 
-  --status-proses: #f97316;  
-  --status-jalan: #60a5fa;   
-  --status-selesai: #22c55e; 
+
+  --status-pending: #eab308;
+  --status-proses: #f97316;
+  --status-jalan: #60a5fa;
+  --status-selesai: #22c55e;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .loader {
@@ -37,22 +44,34 @@ body {
    Custom Toast Notification
 ========================================= */
 .toast-notification {
-    position: fixed;
-    top: -100px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--bg-surface);
-    color: var(--text-primary);
-    padding: 1rem 2rem;
-    border-radius: 50px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    border: 1px solid rgba(255,255,255,0.1);
-    z-index: 9999;
-    transition: top 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    font-weight: 500;
-    pointer-events: none;
+  position: fixed;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 9999;
+  transition: top 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 500;
+  pointer-events: none;
 }
 
 .toast-notification.show {
-    top: 20px;
+  top: 20px;
+}
+
+.icon-warning {
+  font-size: 3rem;
+  color: #ef4444;
+  margin-bottom: 0.5rem;
+}
+
+.icon-switch {
+  font-size: 3rem;
+  color: #3b82f6;
+  margin-bottom: 0.5rem;
 }

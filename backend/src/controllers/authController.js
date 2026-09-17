@@ -1,6 +1,7 @@
-const supabase = require('..//../../database/index');
+const supabase = require('../../../database/index');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const { verifyToken } = require('../middlewares/authMiddleware');
 
 const register = async (request, h) => {
     const { name, email, password, role } = request.payload;
@@ -104,4 +105,40 @@ const login = async (request, h) => {
     }
 };
 
-module.exports = { register, login };
+const updateProfil = async (request, h) => {
+    const user_id = request.user.id;
+    const { nama, email, password } = request.payload;
+
+    try {
+        let updateData = { email: email, nama_lengkap: nama };
+        
+        // Jika user mengisi password baru, hash dan ikut sertakan
+        if (password) {
+            updateData.password = await bcrypt.hash(password, 10);
+        }
+
+        // 1. Update tabel users
+        const { data: user, error: errUser } = await supabase
+            .from('users')
+            .update(updateData)
+            .eq('id', user_id)
+            .select().single();
+        if (errUser) throw errUser;
+
+        // 2. Update tabel perusahaan (nama toko)
+        const { error: errToko } = await supabase
+            .from('perusahaan')
+            .update({ nama_perusahaan: nama })
+            .eq('id', user.perusahaan_id);
+        if (errToko) throw errToko;
+
+        return h.response({
+            status: 'success',
+            user: { id: user.id, name: nama, email: email, role: user.role }
+        }).code(200);
+    } catch (error) {
+        return h.response({ status: 'error', message: 'Gagal memperbarui profil.' }).code(500);
+    }
+};
+
+module.exports = { register, login, updateProfil };

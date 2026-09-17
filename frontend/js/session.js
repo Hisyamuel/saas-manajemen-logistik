@@ -1,4 +1,27 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // ==========================================
+    // FUNGSI GLOBAL: TOAST NOTIFICATION
+    // ==========================================
+    window.showToast = (message) => {
+        // Hapus toast lama jika masih ada yang tampil (mencegah penumpukan)
+        const existingToast = document.querySelector('.toast-notification');
+        if (existingToast) existingToast.remove();
+
+        const toast = document.createElement('div');
+        toast.className = 'toast-notification';
+        toast.innerText = message;
+        document.body.appendChild(toast);
+
+        // Animasi masuk
+        setTimeout(() => toast.classList.add('show'), 10); 
+    
+        // Animasi keluar
+        setTimeout(() => {
+            toast.classList.remove('show'); 
+            setTimeout(() => toast.remove(), 400); 
+        }, 3000);
+    };
+    
     // 1. SESSION GUARD (Keamanan Lapis Kedua)
     const token = localStorage.getItem('krl_token');
     const activeUserJSON = localStorage.getItem('krl_active_user');
@@ -10,20 +33,67 @@ document.addEventListener('DOMContentLoaded', () => {
         return; // Hentikan eksekusi script di bawahnya
     }
 
-    // 2. LOGIKA LOGOUT AMAN
+    // 2. LOGIKA INTERCEPT: KELUAR & GANTI AKUN
+    const logoutModal = document.getElementById('logoutModal');
+    const switchAccountModal = document.getElementById('switchAccountModal');
+
+    // Fungsi tutup modal
+    const closeModals = () => {
+        if (logoutModal) logoutModal.classList.remove('active');
+        if (switchAccountModal) switchAccountModal.classList.remove('active');
+    };
+
+    document.querySelectorAll('.close-logout-btn, .close-switch-btn').forEach(btn => {
+        btn.addEventListener('click', closeModals);
+    });
+
+    // Mencegat semua klik pada elemen tautan <a>
     document.querySelectorAll('a').forEach(link => {
-        if (link.innerText.trim().toLowerCase() === 'keluar' || link.classList.contains('text-danger')) {
+        const linkText = link.textContent.trim().toLowerCase();
+        
+        // Mencegat "Keluar" (Baik di Sidebar maupun Dropdown)
+        if (linkText === 'keluar' || link.classList.contains('text-danger')) {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
-                localStorage.removeItem('krl_token');
-                localStorage.removeItem('krl_active_user');
-                // Replace mencegah halaman masuk ke history browser
-                window.location.replace('index.html'); 
+                if (logoutModal) logoutModal.classList.add('active');
+            });
+        }
+        
+        // Mencegat "Ganti Akun"
+        if (linkText === 'ganti akun') {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (switchAccountModal) switchAccountModal.classList.add('active');
             });
         }
     });
 
-    // 3. LOGIKA RENDER PROFIL (Hanya dieksekusi jika user valid)
+    // 3. LOGIKA EKSEKUSI PEMUTUSAN SESI
+    const executeEndSession = (targetUrl) => { 
+        window.showToast("Anda telah logout");
+        localStorage.removeItem('krl_token');
+        localStorage.removeItem('krl_active_user');
+        
+        // Berikan jeda 0.8 detik agar animasi toast sempat selesai sebelum pindah
+        setTimeout(() => {
+            window.location.replace(targetUrl); 
+        }, 800);
+    };
+
+    const confirmLogoutBtn = document.getElementById('confirmLogoutBtn');
+    const confirmSwitchBtn = document.getElementById('confirmSwitchBtn');
+
+    // Tombol "Ya, Keluar" melempar ke Landing Page
+    if (confirmLogoutBtn) {
+        confirmLogoutBtn.addEventListener('click', () => executeEndSession('index.html'));
+    }
+    
+    // Tombol "Ya, Ganti" melempar ke Halaman Login
+    if (confirmSwitchBtn) {
+        confirmSwitchBtn.addEventListener('click', () => executeEndSession('login.html'));
+    }
+
+    // 4. LOGIKA RENDER PROFIL (Hanya dieksekusi jika user valid)
     if (activeUserJSON && isProtectedPage) {
         const activeUser = JSON.parse(activeUserJSON);
         

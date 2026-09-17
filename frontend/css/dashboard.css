@@ -82,7 +82,7 @@
     justify-content: space-between;
     align-items: center;
     height: 90px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.416);
     margin-bottom: 2rem;
 }
 
@@ -339,6 +339,10 @@
     overflow-x: auto;
 }
 
+thead {
+    text-align: left;
+}
+
 .data-table {
     width: 100%;
     border-collapse: collapse;
@@ -360,10 +364,12 @@
 
 /* Badges Status */
 .badge {
-    padding: 0.35rem 0.75rem;
-    border-radius: 50px;
-    font-size: 0.8rem;
-    font-weight: 600;
+    padding: 0.25rem 0.75rem;
+    margin-right: 0.5rem;
+    border-radius: 99px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    white-space: nowrap;
 }
 
 .badge.pending {
@@ -473,7 +479,7 @@
 }
 
 .modal-body {
-    padding: 0.5rem 2rem;
+    padding: 1rem 2rem;
 }
 
 /* =========================================

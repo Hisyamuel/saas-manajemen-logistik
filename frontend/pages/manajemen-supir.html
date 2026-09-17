@@ -7,6 +7,7 @@
     <title>Manajemen Supir (Vendor) - Kirlogist</title>
     <link rel="stylesheet" href="/frontend/css/styles.css">
     <link rel="stylesheet" href="/frontend/css/dashboard.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
 
 <body class="dashboard-body">
@@ -184,6 +185,48 @@
             <div class="modal-footer">
                 <button type="button" class="btn-outline close-profile-btn">Batal</button>
                 <button type="submit" form="profileForm" class="btn-primary small">Simpan</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================================
+       Modal Konfirmasi Keluar (Logout)
+    ========================================= -->
+    <div id="logoutModal" class="modal-overlay">
+        <div class="modal-container" style="max-width: 320px; text-align: center;">
+            <div class="modal-body" style="padding-top: 1.5rem;">
+                <div class="icon-warning">
+                    <i class="ph ph-warning"></i>
+                </div>
+                <h2 style="margin-bottom: 0.5rem;">Yakin Ingin Keluar?</h2>
+                <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.5rem;">
+                    Sesi Anda akan diakhiri dan Anda harus masuk kembali.
+                </p>
+                <div style="display: flex; gap: 1rem; justify-content: center;">
+                    <button type="button" class="btn-outline close-logout-btn" style="flex: 1;">Batal</button>
+                    <button type="button" id="confirmLogoutBtn" class="btn-outline close-logout-button" style="flex: 1; color: #f47c7c; border-color: #f47c7c;">Ya, Keluar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================================
+       Modal Konfirmasi Ganti Akun
+    ========================================= -->
+    <div id="switchAccountModal" class="modal-overlay">
+        <div class="modal-container" style="max-width: 320px; text-align: center;">
+            <div class="modal-body" style="padding-top: 1.5rem;">
+                <div class="icon-switch">
+                    <i class="ph ph-repeat"></i>
+                </div>
+                <h2 style="margin-bottom: 0.5rem;">Ganti Akun?</h2>
+                <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.5rem;">
+                    Anda akan dialihkan ke halaman login untuk masuk menggunakan akun lain.
+                </p>
+                <div style="display: flex; gap: 1rem; justify-content: center;">
+                    <button type="button" class="btn-outline close-switch-btn" style="flex: 1;">Batal</button>
+                    <button type="button" id="confirmSwitchBtn" class="btn-outline" style="flex: 1;">Ya, Ganti</button>
+                </div>
             </div>
         </div>
     </div>

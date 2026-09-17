@@ -5,21 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // URL API Backend (Sesuaikan dengan port server Hapi.js)
     const API_URL = 'http://localhost:5000/api/auth';
 
-    // Fungsi Toast Global
-    const showToast = (message) => {
-        const toast = document.createElement('div');
-        toast.className = 'toast-notification';
-        toast.innerText = message;
-        document.body.appendChild(toast);
-
-        setTimeout(() => toast.classList.add('show'), 10); // Animasi masuk
-        setTimeout(() => {
-            toast.classList.remove('show'); // Animasi keluar
-            setTimeout(() => toast.remove(), 400); // Hapus dari DOM
-        }, 3000);
-    };
-
-// PENGGUNAAN: Ganti semua alert("...") di auth.js dengan showToast("...")
 
     // --- FUNGSI KEAMANAN & VALIDASI ---
     const sanitizeInput = (str) => {
@@ -94,12 +79,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     return;
                 }
 
-                showToast("Registrasi berhasil! Silakan masuk menggunakan akun baru Anda.");
+                window.showToast("Registrasi berhasil! Silakan masuk menggunakan akun baru Anda.");
                 window.location.href = "login.html";
 
             } catch (error) {
                 console.error("Fetch error:", error);
-                showToast("Terjadi kesalahan koneksi ke server. Pastikan server backend menyala.");
+                window.showToast("Terjadi kesalahan koneksi ke server. Pastikan server backend menyala.");
             } finally {
                 const btn = registerForm.querySelector('button');
                 btn.innerText = "Daftar";
@@ -146,13 +131,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 localStorage.setItem('krl_active_user', JSON.stringify(result.user));
 
                 // Routing Dinamis
-                if (role === 'toko') window.location.href = "toko.html";
+                if (role === 'toko') window.location.href = "./toko.html";
                 else if (role === 'vendor') window.location.href = "vendor.html";
                 else if (role === 'supir') window.location.href = "driver.html";
 
             } catch (error) {
                 console.error("Fetch error:", error);
-                showToast("Terjadi kesalahan koneksi ke server.");
+                window.showToast("Terjadi kesalahan koneksi ke server.");
             } finally {
                 const btn = loginForm.querySelector('button');
                 btn.innerText = "Masuk";

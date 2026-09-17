@@ -1,6 +1,9 @@
 const Hapi = require('@hapi/hapi');
 require('dotenv').config();
+
+// Panggil file route dari folder routes/
 const authRoutes = require('./routes/authRoutes');
+const pengirimanRoutes = require('./routes/pengirimanRoutes');
 
 const init = async () => {
     const server = Hapi.server({
@@ -22,8 +25,9 @@ const init = async () => {
         }
     });
 
-    // TODO: Daftarkan rute-rute dari folder routes/ di sini nanti
+    // Daftarkan rute-rute dari folder routes/ di sini nanti
     server.route(authRoutes);
+    server.route(pengirimanRoutes);
 
     await server.start();
     console.log(`Server berjalan pada ${server.info.uri}`);
