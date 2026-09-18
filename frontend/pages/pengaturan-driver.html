@@ -47,23 +47,23 @@
                     <input type="text" value="Budi Santoso" id="settingNamaSupir">
                 </div>
                 <div class="input-group">
-                    <label>Nomor HP (WhatsApp)</label>
-                    <input type="tel" value="0812-3456-7890">
+                    <label for="settingHpSupir">Nomor HP (WhatsApp)</label>
+                    <input type="tel" id="settingHpSupir" value="0812-3456-7890">
                 </div>
 
                 <!-- Kendaraan -->
                 <h3 style="font-size: 1rem; margin-top: 2rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.05);">Data Kendaraan</h3>
                 <div class="input-group">
-                    <label>Jenis Kendaraan</label>
-                    <select>
+                    <label for="settingKendaraanSupir">Jenis Kendaraan</label>
+                    <select id="settingKendaraanSupir">
                         <option value="engkel" selected>Truk Engkel Bak</option>
                         <option value="pickup">Mobil Pick Up</option>
                         <option value="blindvan">Blind Van</option>
                     </select>
                 </div>
                 <div class="input-group">
-                    <label>Plat Nomor</label>
-                    <input type="text" value="KT 8821 XX">
+                    <label for="settingPlatSupir">Plat Nomor</label>
+                    <input type="text" id="settingPlatSupir" value="KT 8821 XX">
                 </div>
 
                 <!-- Bagian Keamanan (Pindahan dari Modal) -->
@@ -131,5 +131,6 @@
     <script src="/frontend/js/modal.js"></script>
     <script src="/frontend/js/session.js"></script>
     <script src="/frontend/js/driver.js"></script>
+    <script src="/frontend/js/pengaturan-driver.js"></script>
 </body>
 </html>

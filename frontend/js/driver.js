@@ -84,44 +84,60 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Event Listener untuk Tombol Selesai
+    // ==========================================
+    // LOGIKA PENYELESAIAN TUGAS (Dengan Modal)
+    // ==========================================
+    const confirmTaskModal = document.getElementById('confirmTaskModal');
+    const btnConfirmTask = document.getElementById('btnConfirmTask');
+    let activeTaskId = null;
+    let activeButton = null;
+
+    document.querySelectorAll('.close-task-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            if (confirmTaskModal) confirmTaskModal.classList.remove('active');
+            activeTaskId = null;
+        });
+    });
+
     if (taskContainer) {
-        taskContainer.addEventListener('click', async (e) => {
+        taskContainer.addEventListener('click', (e) => {
             if (e.target.classList.contains('btn-sampai')) {
-                const taskId = e.target.getAttribute('data-id');
-                const btn = e.target;
-                
-                if (confirm("Konfirmasi bahwa barang telah sampai di tujuan?")) {
-                    btn.innerText = "Memproses...";
-                    btn.disabled = true;
+                activeTaskId = e.target.getAttribute('data-id');
+                activeButton = e.target;
+                if (confirmTaskModal) confirmTaskModal.classList.add('active');
+            }
+        });
+    }
 
-                    try {
-                        const response = await fetch('http://localhost:5000/api/driver/tugas', {
-                            method: 'PUT',
-                            headers: { 
-                                'Content-Type': 'application/json',
-                                'Authorization': `Bearer ${token}` 
-                            },
-                            body: JSON.stringify({ pengiriman_id: taskId })
-                        });
+    if (btnConfirmTask) {
+        btnConfirmTask.addEventListener('click', async () => {
+            if (!activeTaskId) return;
+            btnConfirmTask.innerText = "Memproses...";
+            btnConfirmTask.disabled = true;
 
-                        const result = await response.json();
-                        if (result.status === 'success') {
-                            window.showToast(result.message);
-                            btn.className = "action-btn btn-selesai";
-                            btn.innerText = "Tugas Selesai";
-                            
-                            // Hapus kartu setelah 2 detik
-                            setTimeout(() => loadTasks(), 2000);
-                        } else {
-                            throw new Error(result.message);
-                        }
-                    } catch (error) {
-                        window.showToast(error.message);
-                        btn.innerText = "Barang Sampai";
-                        btn.disabled = false;
-                    }
+            try {
+                const response = await fetch('http://localhost:5000/api/driver/tugas', {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+                    body: JSON.stringify({ pengiriman_id: activeTaskId })
+                });
+
+                const result = await response.json();
+                if (result.status === 'success') {
+                    window.showToast(result.message);
+                    confirmTaskModal.classList.remove('active');
+                    
+                    activeButton.className = "action-btn btn-selesai";
+                    activeButton.innerText = "Tugas Selesai";
+                    setTimeout(() => loadTasks(), 1500);
+                } else {
+                    throw new Error(result.message);
                 }
+            } catch (error) {
+                window.showToast(error.message);
+            } finally {
+                btnConfirmTask.innerText = "Ya, Selesai";
+                btnConfirmTask.disabled = false;
             }
         });
     }
