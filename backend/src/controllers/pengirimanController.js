@@ -94,5 +94,63 @@ const getRiwayatPengiriman = async (request, h) => {
     }
 };
 
+const batalkanPengiriman = async (request, h) => {
+    // Tangkap ID pengiriman dari parameter URL
+    const { id } = request.params;
+    const user_id = request.user.id;
 
-module.exports = { buatPermintaan, getRiwayatPengiriman };
+    try {
+        // 1. Cari tahu ID Perusahaan (Toko) milik user ini
+        const { data: userData, error: userError } = await supabase
+            .from('users')
+            .select('perusahaan_id')
+            .eq('id', user_id)
+            .single();
+
+        if (userError || !userData) throw new Error('Data pengguna tidak ditemukan.');
+        const toko_id = userData.perusahaan_id;
+
+        // 2. Verifikasi kepemilikan dan status pesanan
+        const { data: cekPengiriman, error: errCek } = await supabase
+            .from('pengiriman')
+            .select('status_kirim')
+            .eq('id', id)
+            .eq('toko_id', toko_id)
+            .single();
+
+        if (errCek || !cekPengiriman) {
+            return h.response({ status: 'fail', message: 'Pesanan tidak ditemukan atau Anda tidak memiliki akses.' }).code(404);
+        }
+
+        // 3. Blokir pembatalan jika pesanan sudah diambil vendor/supir
+        if (cekPengiriman.status_kirim !== 'Mencari Vendor') {
+            return h.response({ 
+                status: 'fail', 
+                message: 'Pesanan sudah diproses dan tidak dapat dibatalkan.' 
+            }).code(400);
+        }
+
+        // 4. Eksekusi penghapusan data dari Supabase
+        const { error: errDelete } = await supabase
+            .from('pengiriman')
+            .delete()
+            .eq('id', id);
+
+        if (errDelete) throw errDelete;
+
+        return h.response({
+            status: 'success',
+            message: 'Pesanan berhasil dibatalkan dan dihapus dari sistem.'
+        }).code(200);
+
+    } catch (error) {
+        console.error('Error batalkan pesanan:', error);
+        return h.response({
+            status: 'error',
+            message: error.message || 'Gagal membatalkan pesanan.'
+        }).code(500);
+    }
+};
+
+
+module.exports = { buatPermintaan, getRiwayatPengiriman, batalkanPengiriman };

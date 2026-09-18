@@ -114,37 +114,59 @@
     </main>
 
     <!-- =========================================
-       Modal Tambah Supir Baru
+       Modal Tambah Supir Baru (Grid Layout Modern)
     ========================================= -->
     <div id="addDriverModal" class="modal-overlay">
-        <div class="modal-container">
+        <!-- Diperlebar menjadi 650px agar 2 kolom tidak berdesakan -->
+        <div class="modal-container" style="max-width: 650px;">
             <div class="modal-header">
                 <h2>Tambah Supir Baru</h2>
                 <button class="close-driver-btn icon-btn" aria-label="Tutup">&times;</button>
             </div>
 
             <div class="modal-body">
-                <form id="addDriverForm">
-                    <div class="input-group">
+                <!-- Tambahkan class grid-form di sini -->
+                <form id="addDriverForm" class="grid-form">
+                    
+                    <!-- Dibuat lebar penuh (span 2) -->
+                    <div class="input-group full-width">
                         <label for="namaSupir">Nama Lengkap Supir</label>
                         <input type="text" id="namaSupir" required placeholder="Contoh: Budi Santoso">
                     </div>
+                    
+                    <!-- Kolom Kiri -->
                     <div class="input-group">
-                        <label for="kontakSupir">Nomor Handphone (WhatsApp)</label>
-                        <input type="tel" id="kontakSupir" required placeholder="Contoh: 081234567890">
+                        <label for="emailSupir">Email Login</label>
+                        <input type="email" id="emailSupir" required placeholder="budi@vendor.com">
                     </div>
+                    
+                    <!-- Kolom Kanan -->
                     <div class="input-group">
-                        <label for="jenisKendaraan">Jenis Kendaraan</label>
-                        <select id="jenisKendaraan" required>
-                            <option value="" disabled selected>-- Pilih Jenis Kendaraan --</option>
-                            <option value="pickup">Mobil Pick Up</option>
-                            <option value="blindvan">Blind Van</option>
-                            <option value="engkel">Truk Engkel</option>
+                        <label for="passSupir">Kata Sandi Sementara</label>
+                        <input type="password" id="passSupir" required placeholder="Minimal 8 karakter">
+                    </div>
+                    
+                    <!-- Kolom Kiri -->
+                    <div class="input-group">
+                        <label for="noHpSupir">Nomor Handphone (WhatsApp)</label>
+                        <input type="tel" id="noHpSupir" required placeholder="Contoh: 081234567890">
+                    </div>
+                    
+                    <!-- Kolom Kanan -->
+                    <div class="input-group">
+                        <label for="kendaraanSupir">Jenis Kendaraan</label>
+                        <select id="kendaraanSupir" required>
+                            <option value="" disabled selected>-- Pilih Kendaraan --</option>
+                            <option value="Mobil Pick Up">Mobil Pick Up</option>
+                            <option value="Blind Van">Blind Van</option>
+                            <option value="Truk Engkel Bak">Truk Engkel Bak</option>
                         </select>
                     </div>
-                    <div class="input-group">
-                        <label for="platNomor">Plat Nomor Kendaraan</label>
-                        <input type="text" id="platNomor" required placeholder="Contoh: KT 8821 XX">
+
+                    <!-- Dibuat lebar penuh (span 2) -->
+                    <div class="input-group full-width">
+                        <label for="platSupir">Plat Nomor Kendaraan</label>
+                        <input type="text" id="platSupir" required placeholder="Contoh: KT 8821 XX">
                     </div>
                 </form>
             </div>
@@ -234,6 +256,7 @@
     <!-- Script Interaksi Modal Tambah Supir -->
     <script src="/frontend/js/modal.js"></script>
     <script src="/frontend/js/session.js"></script>
+    <script src="/frontend/js/manajemen-supir.js"></script>
 </body>
 
 </html>

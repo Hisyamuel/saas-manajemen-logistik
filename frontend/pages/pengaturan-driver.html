@@ -6,6 +6,8 @@
     <title>Pengaturan (Driver) - Kirlogist</title>
     <link rel="stylesheet" href="/frontend/css/styles.css">
     <link rel="stylesheet" href="/frontend/css/driver.css">
+    <link rel="stylesheet" href="/frontend/css/dashboard.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
 <body class="driver-body">
     <div class="mobile-app-wrapper">
@@ -89,7 +91,9 @@
     <div id="logoutModal" class="modal-overlay">
         <div class="modal-container" style="max-width: 320px; text-align: center;">
             <div class="modal-body" style="padding-top: 1.5rem;">
-                <div style="font-size: 3rem; color: #ef4444; margin-bottom: 0.5rem;">⚠️</div>
+                <div class="icon-warning">
+                    <i class="ph ph-warning"></i>
+                </div>
                 <h2 style="margin-bottom: 0.5rem;">Yakin Ingin Keluar?</h2>
                 <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.5rem;">
                     Sesi Anda akan diakhiri dan Anda harus masuk kembali.
@@ -108,20 +112,24 @@
     <div id="switchAccountModal" class="modal-overlay">
         <div class="modal-container" style="max-width: 320px; text-align: center;">
             <div class="modal-body" style="padding-top: 1.5rem;">
-                <div style="font-size: 3rem; color: #3b82f6; margin-bottom: 0.5rem;">🔄</div>
+                <div class="icon-switch">
+                    <i class="ph ph-repeat"></i>
+                </div>
                 <h2 style="margin-bottom: 0.5rem;">Ganti Akun?</h2>
                 <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.5rem;">
                     Anda akan dialihkan ke halaman login untuk masuk menggunakan akun lain.
                 </p>
                 <div style="display: flex; gap: 1rem; justify-content: center;">
                     <button type="button" class="btn-outline close-switch-btn" style="flex: 1;">Batal</button>
-                    <button type="button" id="confirmSwitchBtn" class="btn-primary" style="flex: 1;">Ya, Ganti</button>
+                    <button type="button" id="confirmSwitchBtn" class="btn-outline" style="flex: 1;">Ya, Ganti</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="/frontend/js/driver.js"></script>
+    <!-- Script Sederhana untuk Simulasi Perubahan Tombol -->
+    <script src="/frontend/js/modal.js"></script>
     <script src="/frontend/js/session.js"></script>
+    <script src="/frontend/js/driver.js"></script>
 </body>
 </html>

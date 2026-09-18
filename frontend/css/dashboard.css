@@ -452,7 +452,7 @@ thead {
 }
 
 .modal-header {
-    padding: 1rem 2rem;
+    padding: 0.7rem 2rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     display: flex;
     justify-content: space-between;
@@ -529,11 +529,22 @@ thead {
 }
 
 .modal-footer {
-    padding: 1rem 2rem;
+    padding: 0.7rem 2rem;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
     display: flex;
     justify-content: flex-end;
     gap: 1rem;
+}
+
+/* Layout Form 2 Kolom Modern */
+.grid-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Membagi jadi 2 kolom sama besar */
+    gap: 0 1.5rem; /* Spasi antar kolom */
+}
+
+.grid-form .full-width {
+    grid-column: span 2; /* Elemen ini akan memakan 2 kolom penuh (lebar penuh) */
 }
 
 /* Modifikasi tombol outline spesifik untuk di dalam modal */
@@ -624,6 +635,16 @@ thead {
 .page-btn[disabled] {
     opacity: 0.5;
     cursor: not-allowed;
+}
+
+/* Agar tetap responsif di layar HP (kembali ke 1 kolom) */
+@media (max-width: 600px) {
+    .grid-form {
+        grid-template-columns: 1fr;
+    }
+    .grid-form .full-width {
+        grid-column: span 1;
+    }
 }
 
 /* =========================================

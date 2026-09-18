@@ -147,6 +147,11 @@
     to { opacity: 1; transform: translateY(0); }
 }
 
+/* Memaksa hamburger menu selalu tampil di mode Driver */
+.driver-header .mobile-menu-btn {
+    display: flex !important;
+}
+
 /* =========================================
    Area Konten & Kartu Tugas (Task Cards)
 ========================================= */

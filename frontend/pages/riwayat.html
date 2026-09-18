@@ -226,6 +226,27 @@
         </div>
     </div>
 
+        <!-- =========================================
+       Modal Konfirmasi Batal Pesanan
+    ========================================= -->
+    <div id="cancelOrderModal" class="modal-overlay">
+        <div class="modal-container" style="max-width: 320px; text-align: center;">
+            <div class="modal-body" style="padding-top: 1.5rem;">
+                <div class="icon-warning">
+                    <i class="ph ph-warning"></i>
+                </div>
+                <h2 style="margin-bottom: 0.5rem;">Batalkan Pesanan?</h2>
+                <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.5rem;">
+                    Pesanan ini akan dihapus secara permanen dari sistem dan tidak akan masuk ke Bursa Vendor.
+                </p>
+                <div style="display: flex; gap: 1rem; justify-content: center;">
+                    <button type="button" class="btn-outline close-cancel-btn" style="flex: 1;">Kembali</button>
+                    <button type="button" id="confirmCancelBtn" class="btn-outline" style="flex: 1; color: #ef4444; border-color: #ef4444;">Ya, Hapus</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="/frontend/js/modal.js"></script>
     <script src="/frontend/js/session.js"></script>
     <script src="/frontend/js/riwayat.js"></script>

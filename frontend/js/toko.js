@@ -44,7 +44,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     activeData.forEach(item => {
                         const idResi = `#KRL-${item.id.substring(0, 4).toUpperCase()}`;
                         let badgeClass = item.status_kirim === 'Dalam Perjalanan' ? 'jalan' : 'pending';
-                        const namaVendor = item.vendor ? item.vendor.nama_perusahaan : '-';
+                        
+                        // Default nama vendor
+                        let namaVendor = item.vendor ? item.vendor.nama_perusahaan : '-';
+                        
+                        // INJEKSI TOMBOL BATAL JIKA MASIH MENCARI VENDOR
+                        if (item.status_kirim === 'Mencari Vendor') {
+                            namaVendor = `<button class="btn-outline btn-batal" data-id="${item.id}" style="padding: 0.25rem 0.75rem; font-size: 0.75rem; border-color: #ef4444; color: #ef4444; border-radius: 6px;">Batal</button>`;
+                        }
                         
                         const tr = document.createElement('tr');
                         tr.innerHTML = `
@@ -65,6 +72,70 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Jalankan fungsi saat halaman dimuat
     loadDashboardData();
+
+    // ==========================================
+    // FUNGSI BATALKAN PESANAN (Dengan Modal UI)
+    // ==========================================
+    const tbodyDashboard = document.querySelector('.data-table tbody');
+    const cancelModal = document.getElementById('cancelOrderModal');
+    const confirmCancelBtn = document.getElementById('confirmCancelBtn');
+    
+    let orderIdToDelete = null; // Menyimpan ID pesanan sementara
+
+    // Fungsi tutup modal
+    const closeCancelModal = () => {
+        if (cancelModal) cancelModal.classList.remove('active');
+        orderIdToDelete = null;
+    };
+
+    // Pasang event ke tombol "Kembali" / close
+    document.querySelectorAll('.close-cancel-btn').forEach(btn => {
+        btn.addEventListener('click', closeCancelModal);
+    });
+
+    // 1. Munculkan modal saat tombol "Batal" di tabel diklik
+    if (tbodyDashboard) {
+        tbodyDashboard.addEventListener('click', (e) => {
+            if (e.target.classList.contains('btn-batal')) {
+                orderIdToDelete = e.target.getAttribute('data-id'); // Tangkap ID
+                if (cancelModal) cancelModal.classList.add('active'); // Buka modal
+            }
+        });
+    }
+
+    // 2. Eksekusi Hapus saat tombol "Ya, Hapus" di dalam modal diklik
+    if (confirmCancelBtn) {
+        confirmCancelBtn.addEventListener('click', async () => {
+            if (!orderIdToDelete) return;
+
+            const token = localStorage.getItem('krl_token');
+            confirmCancelBtn.innerText = "Menghapus...";
+            confirmCancelBtn.disabled = true;
+
+            try {
+                const response = await fetch(`http://localhost:5000/api/pengiriman/${orderIdToDelete}`, {
+                    method: 'DELETE',
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                
+                const result = await response.json();
+                
+                if (result.status === 'success') {
+                    closeCancelModal(); // Tutup modal
+                    window.showToast("Pesanan fiktif berhasil dibatalkan dan dihapus!");
+                    loadDashboardData(); // Render ulang tabel secara instan
+                } else {
+                    throw new Error(result.message);
+                }
+            } catch (error) {
+                window.showToast(error.message);
+            } finally {
+                // Kembalikan kondisi tombol modal
+                confirmCancelBtn.innerText = "Ya, Hapus";
+                confirmCancelBtn.disabled = false;
+            }
+        });
+    }
 
     // ==========================================
     // 2. FUNGSI BUAT PERMINTAAN 

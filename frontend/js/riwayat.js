@@ -77,8 +77,12 @@ document.addEventListener('DOMContentLoaded', async () => {
                 statusStyle = 'background: rgba(34, 197, 94, 0.15); color: var(--status-selesai);';
             }
 
-            // Atur Nama Vendor (Jika belum ada, tampilkan strip "-")
-            const namaVendor = item.vendor ? item.vendor.nama_perusahaan : '-';
+            // Atur Nama Vendor (Injeksi tombol batal jika belum ada)
+            let namaVendor = item.vendor ? item.vendor.nama_perusahaan : '-';
+            
+            if (item.status_kirim === 'Mencari Vendor') {
+                namaVendor = `<button class="btn-outline btn-batal" data-id="${item.id}" style="padding: 0.25rem 0.75rem; font-size: 0.75rem; border-color: #ef4444; color: #ef4444; border-radius: 6px;">Batal</button>`;
+            }
 
             const tr = document.createElement('tr');
             tr.innerHTML = `
@@ -153,6 +157,62 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     filterBtn.addEventListener('click', applyFilter);
     searchInput.addEventListener('keyup', (e) => { if(e.key === 'Enter') applyFilter(); });
+
+    // ==========================================
+    // LOGIKA PEMBATALAN PESANAN (Dengan Modal UI)
+    // ==========================================
+    const cancelModal = document.getElementById('cancelOrderModal');
+    const confirmCancelBtn = document.getElementById('confirmCancelBtn');
+    
+    let orderIdToDelete = null;
+
+    const closeCancelModal = () => {
+        if (cancelModal) cancelModal.classList.remove('active');
+        orderIdToDelete = null;
+    };
+
+    document.querySelectorAll('.close-cancel-btn').forEach(btn => {
+        btn.addEventListener('click', closeCancelModal);
+    });
+
+    tableBody.addEventListener('click', (e) => {
+        if (e.target.classList.contains('btn-batal')) {
+            orderIdToDelete = e.target.getAttribute('data-id');
+            if (cancelModal) cancelModal.classList.add('active');
+        }
+    });
+
+    if (confirmCancelBtn) {
+        confirmCancelBtn.addEventListener('click', async () => {
+            if (!orderIdToDelete) return;
+
+            const token = localStorage.getItem('krl_token');
+            confirmCancelBtn.innerText = "Menghapus...";
+            confirmCancelBtn.disabled = true;
+
+            try {
+                const response = await fetch(`http://localhost:5000/api/pengiriman/${orderIdToDelete}`, {
+                    method: 'DELETE',
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                
+                const result = await response.json();
+                
+                if (result.status === 'success') {
+                    closeCancelModal();
+                    window.showToast("Pesanan berhasil dihapus secara permanen!");
+                    fetchRiwayat(); // Memuat ulang data dari server
+                } else {
+                    throw new Error(result.message);
+                }
+            } catch (error) {
+                window.showToast(error.message);
+            } finally {
+                confirmCancelBtn.innerText = "Ya, Hapus";
+                confirmCancelBtn.disabled = false;
+            }
+        });
+    }
 
     // Mulai eksekusi
     fetchRiwayat();

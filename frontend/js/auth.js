@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const result = await response.json();
 
                 if (!response.ok) {
-                    showError(emailInput, result.message || "Kredensial tidak valid.");
+                    showError(emailInput, result.message || "Email tidak valid.");
                     return;
                 }
 
